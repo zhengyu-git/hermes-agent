@@ -1,0 +1,81 @@
+{
+  "jobs": [
+    {
+      "id": "0fcab8cbfa05",
+      "name": "\u6bcf\u65e5\u8d22\u7ecf\u65e9\u62a5",
+      "prompt": "\u6bcf\u5929\u65e9\u4e0a9\u70b9\u4e3a\u7528\u6237\u53d1\u9001\u5168\u7403\u8d22\u7ecf\u65e9\u62a5\u3002\n\n\u6570\u636e\u83b7\u53d6\u6b65\u9aa4\uff1a\n1. \u901a\u8fc7 Yahoo Finance API \u83b7\u53d6\u6807\u666e500\u3001\u7eb3\u65af\u8fbe\u514b\u3001\u9053\u743c\u65af\u3001\u9ec4\u91d1\u3001\u6bd4\u7279\u5e01\u3001\u539f\u6cb9\u7684\u5b9e\u65f6\u671f\u8d27/\u73b0\u8d27\u4ef7\u683c\u548c\u6da8\u8dcc\n2. \u901a\u8fc7 Hacker News Algolia API (hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=8) \u83b7\u53d6\u8fc7\u53bb24\u5c0f\u65f6\u79d1\u6280\u70ed\u95e8\n3. \u901a\u8fc7 Google News RSS (news.google.com/news/rss/search?q=site:reuters.com+finance) \u83b7\u53d6\u8fc7\u53bb24\u5c0f\u65f6\u91cd\u8981\u56fd\u9645\u8d22\u7ecf/\u5730\u7f18\u653f\u6cbb\u65b0\u95fb\n4. \u901a\u8fc7 dev.to API (dev.to/api/articles?tag=programming&per_page=5) \u83b7\u53d6\u5f00\u53d1\u8005\u793e\u533a\u70ed\u95e8\n\n\u8f93\u51fa\u683c\u5f0f\uff08\u4e25\u683c\u6309\u6b64\u6a21\u677f\uff09\uff1a\n\n\ud83d\udcc5 \u5168\u7403\u8d22\u7ecf\u65e9\u62a5 \u00b7 {\u65e5\u671f}\n\n---\n\n\ud83d\udcb0 \u8d22\u7ecf\u5e02\u573a\n| \u54c1\u79cd | \u70b9\u4f4d | \u6da8\u8dcc |\n|------|------|------|\n| \u6807\u666e500 | xxx | \u00b1x.xx% |\n| \u7eb3\u65af\u8fbe\u514b | xxx | \u00b1x.xx% |\n| \u9053\u743c\u65af | xxx | \u00b1x.xx% |\n| \u9ec4\u91d1 | $xxxx | \u00b1x.xx% |\n| \u6bd4\u7279\u5e01 | $xxxxx | \u00b1x.xx% |\n| \u539f\u6cb9 | $xx | \u00b1x.xx% |\n\n---\n\n\ud83e\udd16 \u79d1\u6280\u70ed\u95e8\uff08Hacker News Top\uff09\n| \u70ed\u5ea6 | \u6807\u9898 |\n|------|------|\n| XXXXpts | \u65b0\u95fb\u6807\u9898 |\n\n---\n\n\ud83c\udf0d \u56fd\u9645\u8981\u95fb\uff08Reuters\uff09\n- \u65b0\u95fb\u6807\u98981\n- \u65b0\u95fb\u6807\u98982\n- \u65b0\u95fb\u6807\u98983\n\n---\n\n\ud83c\udfaf \u4e00\u53e5\u8bdd\u603b\u7ed3\n\n---\n\u53d1\u9001\u5e73\u53f0\uff1aQQ\uff0c\u53d1\u9001\u76ee\u6807\uff1aorigin",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 4
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-23T12:20:32.718048+08:00",
+      "next_run_at": "2026-04-25T09:00:00+08:00",
+      "last_run_at": "2026-04-24T09:03:17.693010+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "qqbot",
+      "origin": {
+        "platform": "qqbot",
+        "chat_id": "42E7A93D2B848DB7776DB63BAE50FE2E",
+        "chat_name": null,
+        "thread_id": null
+      }
+    },
+    {
+      "id": "8ba8b8b24ef5",
+      "name": "\u6bcf\u65e5\u81ea\u6211\u6574\u7406\u7ef4\u62a4",
+      "prompt": "\u81ea\u6211\u6574\u7406\u548c\u7ef4\u62a4\u4efb\u52a1\uff1a\n\n1. \u6e05\u7406\u7f13\u5b58\u6587\u4ef6\uff1a\n   - \u5220\u9664 ~/.hermes/image_cache/ \u4e2d\u7684\u65e7\u56fe\u7247\uff08\u4fdd\u7559\u6700\u8fd17\u5929\u7684\uff09\n   - \u5220\u9664 ~/.hermes/cache/screenshots/ \u4e2d\u7684\u65e7\u622a\u56fe\uff08\u4fdd\u7559\u6700\u8fd17\u5929\u7684\uff09\n\n2. \u68c0\u67e5 ~/.hermes/skills/ \u76ee\u5f55\uff1a\n   - \u67e5\u770b\u6240\u6709\u6280\u80fd\u6587\u6863\u662f\u5426\u6709\u9700\u8981\u66f4\u65b0\u7684\u5730\u65b9\n   - \u68c0\u67e5\u662f\u5426\u6709\u65b0\u5b66\u4f1a\u7684\u65b9\u6cd5\u53ef\u4ee5\u8865\u5145\u5230\u6280\u80fd\u6587\u6863\n\n3. \u8bfb\u53d6 memory \u5185\u5bb9\uff1a\n   - \u68c0\u67e5\u662f\u5426\u6709\u8fc7\u671f\u3001\u65e0\u6548\u7684\u8bb0\u5fc6\u4fe1\u606f\u9700\u8981\u5220\u9664\u6216\u66f4\u65b0\n\n4. \u65e5\u5fd7\u8bb0\u5f55\uff1a\n   - \u628a\u672c\u6b21\u6574\u7406\u7684\u7ed3\u679c\u6253\u5370\u51fa\u6765\uff08\u5220\u9664\u4e86\u591a\u5c11\u6587\u4ef6\u3001\u6574\u7406\u4e86\u4ec0\u4e48\uff09\n\n\u53ea\u9700\u8981\u505a\u8fd9\u4e9b\u7b80\u5355\u7684\u7ef4\u62a4\u5de5\u4f5c\uff0c\u4e0d\u9700\u8981\u8054\u7f51\u641c\u7d22\u3002\u5982\u679c\u53d1\u73b0\u95ee\u9898\u8bb0\u5f55\u4e0b\u6765\u5373\u53ef\u3002",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "display": "0 2 * * *"
+      },
+      "schedule_display": "0 2 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-23T20:30:11.734316+08:00",
+      "next_run_at": "2026-04-25T02:00:00+08:00",
+      "last_run_at": "2026-04-24T02:00:33.365065+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "qqbot",
+        "chat_id": "42E7A93D2B848DB7776DB63BAE50FE2E",
+        "chat_name": null,
+        "thread_id": null
+      }
+    }
+  ],
+  "updated_at": "2026-04-24T09:45:36.373134+08:00"
+}
