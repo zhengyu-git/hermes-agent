@@ -97,7 +97,7 @@ WSL网络搜索可用接口（2026年4月实测）：HN Algolia API（hn.algolia
 
 【GitHub备份】
 - 仓库：https://github.com/zhengyu-git/hermes-agent
-- GitHub PAT：ghp_REDACTED_FOR_BACKUP（已嵌入cron任务）
+- GitHub PAT：ghp_REDACTED（已嵌入cron任务）
 - 每日凌晨3点自动备份（任务ID：6f4a3fec3f12）
 - WSL下GitHub完全畅通；Gitee不通（企业网络封锁）
 

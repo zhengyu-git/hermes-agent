@@ -20,10 +20,21 @@ Get weekly global tech news highlights in Chinese, delivered as individual step-
 | Hacker News | `hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30` | 全球开发者热点，投票制 |
 | dev.to | `dev.to/api/articles?tag=ai&per_page=20&top=1` | AI/科技圈文章 |
 | dev.to | `dev.to/api/articles?tag=technology&per_page=20&top=1` | 技术文章 |
+| 360搜索 | `https://www.so.com/s?q=<query>` (curl + 浏览器) | **中文AI/科技资讯，国产模型覆盖** |
+
+### ⚠️ 重要：HN Algolia 的局限性
+
+HN Algolia API **严重偏向英文社区**，会遗漏：
+- 国产大模型发布（Qwen、MiMo、GLM、DeepSeek 中文报道）
+- 国内科技新闻（小米、阿里、智谱等）
+- 中文技术社区的深度分析
+
+**规则：涉及 AI/大模型/国产科技 的话题，必须同时搜索 360搜索 中文源。**
+搜索方法：`curl -sL 'https://www.so.com/s?q=<中文关键词>' -H 'User-Agent: Mozilla/5.0'` 或用浏览器直接打开360搜索。
 
 ## Known Network Limitations (WSL)
 
-- ✅ 可访问：HN Algolia API、dev.to API
+- ✅ 可访问：HN Algolia API、dev.to API、360搜索(so.com)
 - ❌ 不可访问：Google Search、Bing Search、Gitee
 - 📌 Gitee push在WSL里无法完成，需Windows或换网络环境
 

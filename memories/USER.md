@@ -25,3 +25,5 @@ placeholder
 用户对天涯神帖内容（历史/金融类）有阅读兴趣，问过《中国是部金融史》。总结复杂内容时偏好简单直白的表达，不喜欢太学术/太长的解读，要求"说人话"。会追问总结是否覆盖完整内容，重视诚实说明阅读范围。
 §
 用户使用 UE 5.7（不是5.4），Windows路径 D:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64。trace文件存放目录 D:\ZY_Files\trace文件\。Windows用户名 v-zhengyu002。
+§
+希望我将内容翻译成中文（沟通语言偏好：中文）
