@@ -102,9 +102,46 @@ for name, sym in symbols.items():
 - 特朗普称不会在伊朗战争中使用核武器
 ```
 
+## HN Algolia 日期过滤（重要坑点）
+
+`numericFilters` 中的 `>` 必须 URL 编码为 `%3E`，否则请求会返回空结果或报错：
+
+```bash
+# ❌ 错误 — shell 或 API 会误解 `>`
+curl "https://hn.algolia.com/api/v1/search_by_date?query=AI&tags=story&numericFilters=created_at_i>123456"
+
+# ✅ 正确 — 用 %3E 编码
+THREE_DAYS_AGO=$(python3 -c "import time; print(int(time.time() - 3*86400))")
+curl -s "https://hn.algolia.com/api/v1/search_by_date?query=AI&tags=story&hitsPerPage=30&numericFilters=created_at_i%3E${THREE_DAYS_AGO}"
+```
+
+**搜索策略：** 单一关键词覆盖面有限，应并行多个查询拼接结果：
+```bash
+# 多关键词并行搜索同一话题
+for q in "Iran war" "Iran US attack military" "Iran ceasefire Hormuz"; do
+  curl -s "https://hn.algolia.com/api/v1/search_by_date?query=$(echo $q | sed 's/ /+/g')&tags=story&hitsPerPage=20&numericFilters=created_at_i%3E${TS}" 
+done
+```
+
+## Google News 浏览器抓取（RSS 的增强方案）
+
+当 Google News RSS 结果不够丰富时，直接用 browser 打开 Google News 页面效果更好：
+
+```python
+# 步骤
+1. browser_navigate("https://news.google.com/search?q=artificial+intelligence+AI&hl=en-US&gl=US&ceid=US:en")
+2. browser_console(expression="document.body.innerText.substring(0, 5000)")  # 提取前5000字符
+3. browser_scroll(direction="down")  # 继续加载
+4. browser_console(expression="document.body.innerText.substring(5000, 10000)")  # 提取更多
+```
+
+Google News 页面结构：每条新闻 = `来源 + 标题 + 时间 + 作者`，用 `body.innerText` 即可提取全部文本。
+
 ## Notes
 - WSL 企业网络封锁 Reddit、BBC RSS、feeds.reuters.com
 - Google News RSS 是绕过封锁的好方法
 - Yahoo Finance 直接 API 请求比 RSS 更可靠
-- HN Algolia API 支持按时间过滤：`dateRange=all` 或 `numericFilters=points>300`
+- HN Algolia API 支持按时间过滤：`numericFilters=created_at_i%3E{timestamp}`（注意 URL 编码）
+- HN 的 `search` 端点按相关度排序，`search_by_date` 端点按时间排序
 - Reuters 通过 Google News RSS 访问时，中文环境需去掉 `hl=zh-CN&gl=CN` 参数
+- 用户要求所有新闻输出必须使用纯中文，英文标题需翻译
