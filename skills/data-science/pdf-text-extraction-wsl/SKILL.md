@@ -12,17 +12,22 @@ Extract text content from PDFs using pdfjs-dist (Node.js) when system tools (pdf
 - Node.js 18+ available (npm exists)
 - Python pip usually unavailable in WSL
 
+## IMPORTANT: Newer pdfjs-dist versions (v4+) no longer ship .mjs files
+
+As of 2026, pdfjs-dist (v4+) removed the `.mjs` build. The legacy build now only has `.js` files.
+Node.js ESM mode cannot import `.js` extensions, so you MUST use **CommonJS `require()`** with a `.cjs` script.
+
 ## Quick Start
 
 ```bash
 # 1. Install pdfjs-dist
 cd /tmp && npm install pdfjs-dist
 
-# 2. Create extraction script
-cat > /tmp/pdf_extract.mjs << 'EOF'
-import { getDocument } from '/tmp/node_modules/pdfjs-dist/legacy/build/pdf.mjs';
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'fs';
-import { join } from 'path';
+# 2. Create extraction script (use .cjs extension for CommonJS)
+cat > /tmp/pdf_extract.cjs << 'CEOF'
+const { getDocument } = require('/tmp/node_modules/pdfjs-dist/legacy/build/pdf.js');
+const { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } = require('fs');
+const { join } = require('path');
 
 const dir = '/mnt/c/Users/YOUR_USER/Desktop/PDF';
 const outDir = '/home/user/.hermes/pdf_contents';
@@ -35,7 +40,7 @@ async function extractFile(file) {
   if (existsSync(outPath)) { console.log(`[SKIP] ${file}`); return; }
   try {
     const data = new Uint8Array(readFileSync(filePath));
-    const doc = await getDocument({ data, useWorkerFetch: false, isEvalSupported: false, useSystemFonts: true }).promise;
+    const doc = await getDocument({ data, verbosity: 0, useWorkerFetch: false, isEvalSupported: false, useSystemFonts: true }).promise;
     console.log(`[${file}] ${doc.numPages} pages`);
     let fullText = '';
     for (let i = 1; i <= doc.numPages; i++) {
@@ -51,18 +56,29 @@ async function extractFile(file) {
   }
 }
 
-for (const file of files) await extractFile(file);
-console.log('Done!');
-EOF
+(async () => {
+  for (const file of files) await extractFile(file);
+  console.log('Done!');
+})();
+CEOF
 
 # 3. Run
-node /tmp/pdf_extract.mjs
+node /tmp/pdf_extract.cjs
 ```
 
 ## Key Findings (Lessons Learned)
 
+> **Handling Windows paths with spaces/Unicode**
+> - When specifying the PDF file path, wrap the entire path in single quotes and use the exact Unicode characters as they appear on disk. Example:
+>   ```js
+>   const pdfPath = '/mnt/c/Users/.../跟随城市发展的轨迹，寻找房价上升的规律——总结我的地产投资理念-蛮族勇士.pdf';
+>   ```
+> - Avoid relying on automatic escaping; provide the literal string.
+> - This prevents ENOENT errors that occurred when the script attempted to read a file with spaces or non‑ASCII characters.
+
+
 - **Wrong package first**: `pdf-parse` npm package has a completely different API (`PDFParse` class, not the default export) — avoid it
-- **Wrong pdfjs-dist build**: Main `build/` directory only has `.mjs`/`.mts` files — use `legacy/build/pdf.mjs` instead
+- **pdfjs-dist v4+ no longer ships .mjs**: Newer versions of pdfjs-dist only have `.js` files in `legacy/build/`. Must use **CommonJS `require()`** with `.cjs` scripts, not ESM `import` with `.mjs`.
 - **cMap/wasm warnings are OK**: Missing `cMapUrl`, `standardFontDataUrl`, `wasmUrl` parameters produce warnings but extraction still works
 - **API**: `getDocument({data})` → `doc.numPages` → `doc.getPage(n)` → `page.getTextContent()` → `content.items.map(item => item.str)`
 - **WSL path**: Windows files accessible via `/mnt/c/Users/...`
@@ -75,9 +91,8 @@ node /tmp/pdf_extract.mjs
 
 ## Batch Extraction with Directory Structure
 ```javascript
-import { getDocument } from '/tmp/node_modules/pdfjs-dist/legacy/build/pdf.mjs';
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'fs';
-import { dirname } from 'path';
+const { getDocument } = require('/tmp/node_modules/pdfjs-dist/legacy/build/pdf.js');
+const { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } = require('fs');
 
 const dir = '/mnt/c/Users/YOUR_USER/Desktop/PDF/';
 const outDir = '/home/user/.hermes/ty_pdfs/';
@@ -128,6 +143,7 @@ console.log(`Done: ${done}, Failed: ${failed}`);
 
 | Problem | Solution |
 |---------|----------|
+| `Cannot find module 'pdfjs-dist/.../pdf.mjs'` | Newer pdfjs-dist removed .mjs files. Use CommonJS `require('./pdf.js')` with a `.cjs` script instead. |
 | `Cannot find module 'pdf-parse'` | Wrong package; use `pdfjs-dist` instead |
 | `pdfParse is not a function` | pdf-parse uses `PDFParse` class, not default export |
 | `pip: command not found` | Don't try pip; use Node.js pdfjs-dist |
@@ -137,6 +153,7 @@ console.log(`Done: ${done}, Failed: ${failed}`);
 | Millions of ExtGState warnings flooding stdout | Add `verbosity: 0` to getDocument options |
 | PDF is scanned image, returns almost no text | Normal for old Chinese scanned books; not an error |
 | Process hangs on large PDF (300MB+) | Normal, large scanned PDFs take many minutes |
+| `Cannot polyfill DOMMatrix/Path2D` warnings | Harmless; missing `canvas` package, text extraction unaffected |
 
 ## Save Location
 Store extracted text as `~/.hermes/pdf_contents/<original_filename>.txt` so it's easy to reference later.

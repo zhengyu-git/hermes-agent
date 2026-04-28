@@ -25,3 +25,9 @@
 用户使用 UE 5.7（不是5.4），Windows路径 D:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64。trace文件存放目录 D:\ZY_Files\trace文件\。Windows用户名 v-zhengyu002。
 §
 用户要求所有输出内容必须使用纯中文，包括早报、新闻标题、科技热门等，英文必须翻译成中文，不允许保留英文原文。
+§
+用户要求：解读PDF文件时，如果发现已经解读过的，要提示用户"已经解读过"并询问是否继续解读。不要自动重复解读。
+§
+api
+§
+中文文件名在Windows系统中可能会被编码为Unicode码点（例如\u5929）而不是直接显示为中文字符。

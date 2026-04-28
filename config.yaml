@@ -1,7 +1,8 @@
 model:
-  default: mimo-v2.5-pro
-  provider: xiaomi
-  base_url: https://token-plan-cn.xiaomimimo.com/v1
+  default: deepseek-ai/deepseek-v4-pro
+  provider: nvidia
+  base_url: https://integrate.api.nvidia.com/v1
+  api_key: REDACTED
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
@@ -357,6 +358,15 @@ platform_toolsets:
   - hermes-qqbot
 web:
   backend: ''
+custom_providers:
+- name: Api-xai.ainaibahub-claude-sonnet-4.6
+  base_url: https://api-xai.ainaibahub.com/v1
+  api_key: REDACTED
+  model: claude-sonnet-4-6
+- name: openai/gpt-oss-120b
+  base_url: https://api.groq.com/openai/v1
+  api_key: REDACTED
+  model: openai/gpt-oss-120b
 
 # ── Fallback Model ────────────────────────────────────────────────────
 # Automatic provider failover when primary is unavailable.
