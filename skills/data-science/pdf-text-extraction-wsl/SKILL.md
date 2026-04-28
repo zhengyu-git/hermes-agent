@@ -68,13 +68,21 @@ node /tmp/pdf_extract.cjs
 
 ## Key Findings (Lessons Learned)
 
-> **Handling Windows paths with spaces/Unicode**
-> - When specifying the PDF file path, wrap the entire path in single quotes and use the exact Unicode characters as they appear on disk. Example:
+> **Handling Windows paths with spaces/Unicode/中文引号**
+> - Chinese `"` `"` (fullwidth quotation marks) in filenames are the #1 cause of `ls`/shell access failures.
+>   Shell treats these differently from ASCII `"` and `'`, causing `No such file or directory` even with quotes.
+> - **The universal fix**: NEVER hardcode the path in a `ls` or shell command. Instead, use `find` to resolve the exact path,
+>   then feed it into the Node.js script via `execSync`:
 >   ```js
->   const pdfPath = '/mnt/c/Users/.../跟随城市发展的轨迹，寻找房价上升的规律——总结我的地产投资理念-蛮族勇士.pdf';
+>   const { execSync } = require('child_process');
+>   const pdfPath = execSync(
+>     "find '/mnt/c/Users/.../target_dir/' -maxdepth 1 -name '*关键词*' -print0 | tr '\\0' '\\n' | head -1",
+>     { encoding: 'utf-8' }
+>   ).trim();
 >   ```
-> - Avoid relying on automatic escaping; provide the literal string.
-> - This prevents ENOENT errors that occurred when the script attempted to read a file with spaces or non‑ASCII characters.
+> - This pattern works for ALL special characters: spaces, em-dashes, fullwidth quotes, Unicode — no exceptions.
+> - When using `search_files` to discover the path, note that the output shows the actual Unicode characters correctly,
+>   but shell interpolation of those characters may fail. Always resolve in JS with `find + execSync`.
 
 
 - **Wrong package first**: `pdf-parse` npm package has a completely different API (`PDFParse` class, not the default export) — avoid it

@@ -56,15 +56,15 @@
       "schedule_display": "0 2 * * *",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 7
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T20:30:11.734316+08:00",
-      "next_run_at": "2026-04-29T02:00:00+08:00",
-      "last_run_at": "2026-04-28T02:00:30.553906+08:00",
+      "next_run_at": "2026-04-30T02:00:00+08:00",
+      "last_run_at": "2026-04-29T02:08:23.956515+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -79,7 +79,7 @@
     {
       "id": "6f4a3fec3f12",
       "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
-      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efdhermes\u6838\u5fc3\u6587\u4ef6\u5230GitHub\u3002\n\n**\u5907\u4efd\u8303\u56f4\uff1a**\n- ~/.hermes/skills/\n- ~/.hermes/memories/\n- ~/.hermes/cron/\n- ~/.hermes/perfsight_docs/\n- ~/.hermes/perfsight_openapi_docs/\n- ~/.hermes/config.yaml\n- ~/.hermes/SOUL.md\n\n**\u5907\u4efd\u6d41\u7a0b\uff1a**\n1. \u6253\u5305\u4ee5\u4e0a\u6587\u4ef6\u4e3atar.gz\uff08\u6392\u9664.pyc\u3001__pycache__\u3001*.log\u3001state.db*\u3001*.lock\u7b49\u4e34\u65f6\u6587\u4ef6\uff09\n2. \u89e3\u538b\u5230\u4e34\u65f6\u76ee\u5f55 /tmp/hermes-github-backup/\n3. \u68c0\u67e5\u662f\u5426\u6709\u5185\u5bb9\u53d8\u66f4\uff08\u6709\u53d8\u66f4\u624dpush\uff09\uff1a\n   ```bash\n   cd /tmp/hermes-github-backup\n   git init --initial-branch=master\n   git remote add origin https://REDACTED@github.com/zhengyu-git/hermes-agent.git\n   git add -A\n   git diff --cached --quiet || git commit -m \"auto backup $(date '+%Y-%m-%d %H:%M')\"\n   git push origin master --quiet\n   ```\n4. push\u5b8c\u6210\u540e\u5220\u9664\u4e34\u65f6\u76ee\u5f55\n5. \u8f93\u51fa\u5907\u4efd\u7ed3\u679c\uff08\u6210\u529f/\u65e0\u53d8\u66f4/\u5931\u8d25\uff09\n\n\u5982\u679cgit push\u5931\u8d25\uff08\u7f51\u7edc\u95ee\u9898\u7b49\uff09\uff0c\u4e0d\u8981\u91cd\u8bd5\uff0c\u76f4\u63a5\u7ed3\u675f\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\u3002",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efdhermes\u6838\u5fc3\u6587\u4ef6\u5230GitHub\u3002\n\n**\u5907\u4efd\u8303\u56f4\uff1a**\n- ~/.hermes/skills/\n- ~/.hermes/memories/\n- ~/.hermes/cron/\n- ~/.hermes/perfsight_docs/\n- ~/.hermes/perfsight_openapi_docs/\n- ~/.hermes/config.yaml\n- ~/.hermes/SOUL.md\n\n**\u5907\u4efd\u6d41\u7a0b\uff1a**\n1. \u6253\u5305\u4ee5\u4e0a\u6587\u4ef6\u4e3atar.gz\uff08\u6392\u9664.pyc\u3001__pycache__\u3001*.log\u3001state.db*\u3001*.lock\u7b49\u4e34\u65f6\u6587\u4ef6\uff09\n2. \u89e3\u538b\u5230\u4e34\u65f6\u76ee\u5f55 /tmp/hermes-github-backup/\n3. \u68c0\u67e5\u662f\u5426\u6709\u5185\u5bb9\u53d8\u66f4\uff08\u6709\u53d8\u66f4\u624dpush\uff09\uff1a\n   ```bash\n   cd /tmp/hermes-github-backup\n   git init --initial-branch=master\n   git remote add origin https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/hermes-agent.git\n   git add -A\n   git diff --cached --quiet || git commit -m \"auto backup $(date '+%Y-%m-%d %H:%M')\"\n   git push origin master --quiet\n   ```\n4. push\u5b8c\u6210\u540e\u5220\u9664\u4e34\u65f6\u76ee\u5f55\n5. \u8f93\u51fa\u5907\u4efd\u7ed3\u679c\uff08\u6210\u529f/\u65e0\u53d8\u66f4/\u5931\u8d25\uff09\n\n\u5982\u679cgit push\u5931\u8d25\uff08\u7f51\u7edc\u95ee\u9898\u7b49\uff09\uff0c\u4e0d\u8981\u91cd\u8bd5\uff0c\u76f4\u63a5\u7ed3\u675f\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\u3002",
       "skills": [],
       "skill": null,
       "model": null,
@@ -94,21 +94,59 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 4
+        "completed": 5
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-24T11:16:07.749028+08:00",
-      "next_run_at": "2026-04-29T03:00:00+08:00",
-      "last_run_at": "2026-04-28T03:00:43.378231+08:00",
+      "next_run_at": "2026-04-30T03:00:00+08:00",
+      "last_run_at": "2026-04-28T10:36:30.044861+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "deliver": "qqbot:42E7A93D2B848DB7776DB63BAE50FE2E",
       "origin": null
+    },
+    {
+      "id": "b713e4143df7",
+      "name": "\u684c\u9762\u5907\u5fd8\u5f55\u5907\u4efd",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * *",
+        "display": "0 0 * * *"
+      },
+      "schedule_display": "0 0 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-28T15:51:11.129981+08:00",
+      "next_run_at": "2026-04-30T00:00:00+08:00",
+      "last_run_at": "2026-04-29T00:04:23.733966+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "qqbot",
+        "chat_id": "42E7A93D2B848DB7776DB63BAE50FE2E",
+        "chat_name": null,
+        "thread_id": null
+      }
     }
   ],
-  "updated_at": "2026-04-28T10:12:31.952368+08:00"
+  "updated_at": "2026-04-29T03:00:24.645593+08:00"
 }

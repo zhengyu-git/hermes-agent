@@ -29,18 +29,9 @@ PDF目录：~/.hermes/pdf_contents/（原文件名+.txt，共7个，均已提取
 6. 原子习惯.pdf.txt — 285页，James Clear，好习惯累积法则
 7. CSAPP第三版扫描版.pdf.txt — 775页，第三版英文翻译版
 §
-用户是游戏性能工程师，工作于无限暖暖(Infinity Nikki)，使用 UE5、Mac M2、PerfInsight、Unreal Insights 等工具。偏好：希望AI能自主解决问题、联网搜索新方法、自主学习创新；遇到问题时希望我先自己尝试解决，而不是直接说"不行"。vision_analyze 工具不支持本地路径（/mnt/c 或 Windows 路径），只接受 HTTP URL 或特定格式的本地路径。
-§
-平时多学习自然的中文表达，提升处理事情的能力。用户希望我的中文更地道、更自然，像正常人说话一样，不要太生硬。
-§
-用户说话风格：喜欢自然、随和的中文，像正常人聊天，可以适当调皮。用户会开玩笑（比如问"智能裤"）。
+用户是游戏性能工程师，工作于无限暖暖(Infinity Nikki)，使用 UE5、Mac M2、PerfInsight、Unreal Insights 等工具。用户喜欢自然随和的中文，像正常人聊天，可以适当调皮，会开玩笑（比如"智能裤"）。喜欢简洁，不废话。用户希望AI能自主解决问题、联网搜索新方法、自主学习创新；遇到问题时希望我先自己尝试解决，而不是直接说"不行"。vision_analyze 工具不支持本地路径（/mnt/c 或 Windows 路径），只接受 HTTP URL 或特定格式的本地路径。平时多学习自然的中文表达，提升处理事情的能力。
 §
 用户已将hermes备份从Gitee迁移到GitHub：仓库 https://github.com/zhengyu-git/hermes-agent，GitHub PAT已嵌入cron任务。Gitee仓库废弃（WSL下不通）。
-
-【每日GitHub备份】
-- 任务ID：6f4a3fec3f12，每天凌晨3点执行
-- 备份内容：skills/、memories/、cron/、perfsight_docs/、perfsight_openapi_docs/、config.yaml、SOUL.md
-- 同时投送到QQ Bot和当前对话
 
 【PerfInsight网站文档导航】已整理到 ~/.hermes/perfsight_websites/README.md：
 - 中文文档站：perfsight.qq.com/documents/zh/perfsight/（含Unity/Unreal/控制台/主机/云控/OpenApi/合规）
@@ -76,25 +67,10 @@ WSL网络搜索可用接口（2026年4月实测）：HN Algolia API（hn.algolia
 ```
 然后直接发汇总内容，不再一条条拆开发送
 
-【WSL网络可用接口】（2026年4月实测）
-- HN Algolia API（hn.algolia.com/api）→ Hacker News热门内容
-- dev.to API（dev.to/api/articles）→ 开发者社区热门
-- GitHub → 可访问
-- Gitee → WSL完全无法访问（100%丢包，企业网络封锁）
-- Google/必应 → 被墙
-
-【GitHub备份】
-- 仓库：https://github.com/zhengyu-git/hermes-agent
-- GitHub PAT：REDACTED（已嵌入cron任务）
-- 每日凌晨3点自动备份（任务ID：6f4a3fec3f12）
-- WSL下GitHub完全畅通；Gitee不通（企业网络封锁）
-
-【用户偏好】
-- 喜欢自然随和的中文，像正常人聊天
-- 喜欢简洁，不废话
-- 希望AI自主解决问题
-- 会开玩笑（如"智能裤"）
-- 用户是游戏性能工程师（无限暖暖 UE5），用Mac M2
+【每日GitHub备份】
+- 任务ID：6f4a3fec3f12，每天凌晨3点执行
+- 备份内容：skills/、memories/、cron/、perfsight_docs/、perfsight_openapi_docs/、config.yaml、SOUL.md
+- 仓库：https://github.com/zhengyu-git/hermes-agent，WSL下GitHub畅通；Gitee不通（企业网络封锁）
 §
 PerfInsight模版用"场景结束时间"标识对局，不用开始时间。detail接口参数：username/Appid(大写A)/token/Idstr，不需要env参数。username备选：traviszeng、Shen、dannyzhou，一个失效就换下一个。FPS等指标全部取PerfSight平台算好的值，不准自己算。UnrealInsights路径 D:\Program Files\Epic Games\UE_5.4 是错的，用户会提供正确路径。写Windows bat脚本要用纯英文，避免CMD编码乱码。
 §

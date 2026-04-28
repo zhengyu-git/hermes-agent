@@ -38,12 +38,21 @@ Steps:
 - `git push --force` → blocked. Use shallow clone overlay approach.
 
 ### GitHub Push Protection (GH013)
-GitHub scans pushes for secrets and rejects commits containing PATs (`ghp_*` pattern). Files that commonly contain tokens:
+GitHub scans pushes for secrets and rejects commits containing credentials. Scan for ALL known secret patterns before commit:
+- `ghp_[a-zA-Z0-9]{36,}` — GitHub PAT
+- `gsk_[a-zA-Z0-9]{20,}` — Groq API Key
+- `sk-[a-zA-Z0-9]{20,}` — OpenAI API Key
+- `sk-ant-[a-zA-Z0-9_-]{20,}` — Anthropic API Key
+- `xai-[a-zA-Z0-9]{20,}` — xAI API Key
+
+Files that commonly contain tokens:
+- `config.yaml` (Groq, OpenAI keys)
 - `cron/jobs.json` (backup prompt includes the token URL)
 - `cron/output/*/…md` (cron output logs capture the prompt)
 - `memories/MEMORY.md` (may store token references)
+- `skills/mcp/native-mcp/SKILL.md` (may contain API key examples)
 
-Fix: regex replace PAT patterns with `REDACTED` in all text files before commit.
+Fix: regex replace ALL secret patterns with `REDACTED` in all text files before commit. Use a loop over multiple patterns to catch everything.
 
 ### Timeouts
 - Git push/fetch can timeout at 60s. Use 120s+ timeout.
