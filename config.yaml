@@ -2,7 +2,7 @@ model:
   default: deepseek-ai/deepseek-v4-pro
   provider: nvidia
   base_url: https://integrate.api.nvidia.com/v1
-  api_key: gsk_REDACTED
+  api_key: REDACTED_GROQ_KEY
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
@@ -361,11 +361,11 @@ web:
 custom_providers:
 - name: Api-xai.ainaibahub-claude-sonnet-4.6
   base_url: https://api-xai.ainaibahub.com/v1
-  api_key: sk-REDACTED
+  api_key: REDACTED_OPENAI_KEY
   model: claude-sonnet-4-6
 - name: openai/gpt-oss-120b
   base_url: https://api.groq.com/openai/v1
-  api_key: gsk_REDACTED
+  api_key: REDACTED_GROQ_KEY
   model: openai/gpt-oss-120b
 
 # ── Fallback Model ────────────────────────────────────────────────────

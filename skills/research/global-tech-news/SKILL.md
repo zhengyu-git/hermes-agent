@@ -30,7 +30,7 @@ HN Algolia API **严重偏向英文社区**，会遗漏：
 - 中文技术社区的深度分析
 
 **规则：涉及 AI/大模型/国产科技 的话题，必须同时搜索 360搜索 中文源。**
-搜索方法：`curl -sL 'https://www.so.com/s?q=<中文关键词>' -H 'User-Agent: Mozilla/5.0'` 或用浏览器直接打开360搜索。
+搜索方法：**curl 会被反爬返回空内容，必须用浏览器 navigate 打开360搜索**。命令：`browser_navigate(url='https://www.so.com/s?q=<关键词>')`，然后用 browser_snapshot 读取结果。
 
 ## Known Network Limitations (WSL)
 

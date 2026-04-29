@@ -18,15 +18,15 @@
       "schedule_display": "0 9 * * *",
       "repeat": {
         "times": null,
-        "completed": 9
+        "completed": 10
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T12:20:32.718048+08:00",
-      "next_run_at": "2026-04-29T09:00:00+08:00",
-      "last_run_at": "2026-04-28T10:11:31.939916+08:00",
+      "next_run_at": "2026-04-30T09:00:00+08:00",
+      "last_run_at": "2026-04-29T09:14:18.741346+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -56,15 +56,15 @@
       "schedule_display": "0 2 * * *",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 8
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T20:30:11.734316+08:00",
-      "next_run_at": "2026-04-30T02:00:00+08:00",
-      "last_run_at": "2026-04-29T02:08:23.956515+08:00",
+      "next_run_at": "2026-05-01T02:00:00+08:00",
+      "last_run_at": "2026-04-30T02:13:51.070650+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -79,7 +79,7 @@
     {
       "id": "6f4a3fec3f12",
       "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
-      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efdhermes\u6838\u5fc3\u6587\u4ef6\u5230GitHub\u3002\n\n**\u5907\u4efd\u8303\u56f4\uff1a**\n- ~/.hermes/skills/\n- ~/.hermes/memories/\n- ~/.hermes/cron/\n- ~/.hermes/perfsight_docs/\n- ~/.hermes/perfsight_openapi_docs/\n- ~/.hermes/config.yaml\n- ~/.hermes/SOUL.md\n\n**\u5907\u4efd\u6d41\u7a0b\uff1a**\n1. \u6253\u5305\u4ee5\u4e0a\u6587\u4ef6\u4e3atar.gz\uff08\u6392\u9664.pyc\u3001__pycache__\u3001*.log\u3001state.db*\u3001*.lock\u7b49\u4e34\u65f6\u6587\u4ef6\uff09\n2. \u89e3\u538b\u5230\u4e34\u65f6\u76ee\u5f55 /tmp/hermes-github-backup/\n3. \u68c0\u67e5\u662f\u5426\u6709\u5185\u5bb9\u53d8\u66f4\uff08\u6709\u53d8\u66f4\u624dpush\uff09\uff1a\n   ```bash\n   cd /tmp/hermes-github-backup\n   git init --initial-branch=master\n   git remote add origin https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/hermes-agent.git\n   git add -A\n   git diff --cached --quiet || git commit -m \"auto backup $(date '+%Y-%m-%d %H:%M')\"\n   git push origin master --quiet\n   ```\n4. push\u5b8c\u6210\u540e\u5220\u9664\u4e34\u65f6\u76ee\u5f55\n5. \u8f93\u51fa\u5907\u4efd\u7ed3\u679c\uff08\u6210\u529f/\u65e0\u53d8\u66f4/\u5931\u8d25\uff09\n\n\u5982\u679cgit push\u5931\u8d25\uff08\u7f51\u7edc\u95ee\u9898\u7b49\uff09\uff0c\u4e0d\u8981\u91cd\u8bd5\uff0c\u76f4\u63a5\u7ed3\u675f\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\u3002",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efdhermes\u6838\u5fc3\u6587\u4ef6\u5230GitHub\u3002\n\n**\u5907\u4efd\u8303\u56f4\uff1a**\n- ~/.hermes/skills/\n- ~/.hermes/memories/\n- ~/.hermes/cron/\n- ~/.hermes/perfsight_docs/\n- ~/.hermes/perfsight_openapi_docs/\n- ~/.hermes/config.yaml\n- ~/.hermes/SOUL.md\n\n**\u5907\u4efd\u6d41\u7a0b\uff1a**\n1. \u6253\u5305\u4ee5\u4e0a\u6587\u4ef6\u4e3atar.gz\uff08\u6392\u9664.pyc\u3001__pycache__\u3001*.log\u3001state.db*\u3001*.lock\u7b49\u4e34\u65f6\u6587\u4ef6\uff09\n2. \u89e3\u538b\u5230\u4e34\u65f6\u76ee\u5f55 /tmp/hermes-github-backup/\n3. \u68c0\u67e5\u662f\u5426\u6709\u5185\u5bb9\u53d8\u66f4\uff08\u6709\u53d8\u66f4\u624dpush\uff09\uff1a\n   ```bash\n   cd /tmp/hermes-github-backup\n   git init --initial-branch=master\n   git remote add origin https://REDACTED_GH_TOKEN@github.com/zhengyu-git/hermes-agent.git\n   git add -A\n   git diff --cached --quiet || git commit -m \"auto backup $(date '+%Y-%m-%d %H:%M')\"\n   git push origin master --quiet\n   ```\n4. push\u5b8c\u6210\u540e\u5220\u9664\u4e34\u65f6\u76ee\u5f55\n5. \u8f93\u51fa\u5907\u4efd\u7ed3\u679c\uff08\u6210\u529f/\u65e0\u53d8\u66f4/\u5931\u8d25\uff09\n\n\u5982\u679cgit push\u5931\u8d25\uff08\u7f51\u7edc\u95ee\u9898\u7b49\uff09\uff0c\u4e0d\u8981\u91cd\u8bd5\uff0c\u76f4\u63a5\u7ed3\u675f\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\u3002",
       "skills": [],
       "skill": null,
       "model": null,
@@ -94,15 +94,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 5
+        "completed": 6
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-24T11:16:07.749028+08:00",
-      "next_run_at": "2026-04-30T03:00:00+08:00",
-      "last_run_at": "2026-04-28T10:36:30.044861+08:00",
+      "next_run_at": "2026-05-01T03:00:00+08:00",
+      "last_run_at": "2026-04-29T03:04:38.948144+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -112,7 +112,7 @@
     {
       "id": "b713e4143df7",
       "name": "\u684c\u9762\u5907\u5fd8\u5f55\u5907\u4efd",
-      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://ghp_REDACTED_REDACTED_REDACTED_REDACTED@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://REDACTED_GH_TOKEN@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://REDACTED_GH_TOKEN@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
       "skills": [],
       "skill": null,
       "model": null,
@@ -127,15 +127,15 @@
       "schedule_display": "0 0 * * *",
       "repeat": {
         "times": null,
-        "completed": 1
+        "completed": 2
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-28T15:51:11.129981+08:00",
-      "next_run_at": "2026-04-30T00:00:00+08:00",
-      "last_run_at": "2026-04-29T00:04:23.733966+08:00",
+      "next_run_at": "2026-05-01T00:00:00+08:00",
+      "last_run_at": "2026-04-30T00:30:08.192134+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -146,7 +146,45 @@
         "chat_name": null,
         "thread_id": null
       }
+    },
+    {
+      "id": "d7786a07b9cf",
+      "name": "\u6bcf\u65e5\u5b9e\u65f6\u65b0\u95fb\u63a8\u9001\uff08\u5348/\u665a/\u591c\uff09",
+      "prompt": "\u4f60\u73b0\u5728\u662f\"\u6bcf\u65e5\u5b9e\u65f6\u65b0\u95fb\u63a8\u9001\"\u4efb\u52a1\u3002\u5f53\u524d\u65e5\u671f\u548c\u65f6\u95f4\u5728\u4f60\u7684\u4e0a\u4e0b\u6587\u4e2d\u6709\u663e\u793a\u3002\u4efb\u52a1\uff1a\n\n\u641c\u7d22\u5e76\u6574\u7406\u4eca\u5929\uff08\u5f53\u5929\uff09\u6700\u65b0\u53d1\u751f\u7684\u56fd\u5185\u5916\u91cd\u5927\u65b0\u95fb\uff0c\u5206\u4e3a\"\ud83c\udde8\ud83c\uddf3 \u4e2d\u56fd\u56fd\u5185\"\u548c\"\ud83c\udf0d \u56fd\u9645\"\u4e24\u90e8\u5206\u8f93\u51fa\u3002\n\n\u6570\u636e\u6e90\u4f18\u5148\u7ea7\uff1a\n1. \u4e1c\u65b9\u8d22\u5bcc/\u8d22\u8054\u793e\u5f53\u65e5\u65e9\u95f4/\u5348\u95f4\u65b0\u95fb\u7cbe\u9009\uff08360\u641c\u7d22\u641c\"X\u6708X\u65e5\u65e9\u95f4\u65b0\u95fb\u7cbe\u9009\"\u6216\"X\u6708X\u65e5\u5348\u95f4\u65b0\u95fb\u7cbe\u9009\"\uff09\n2. \u65b0\u6d6a\u56fd\u9645\u70ed\u70b9\u5c0f\u65f6\u62a5\uff08\u641c\u5f53\u5929\u65e5\u671f+\u56fd\u9645\u70ed\u70b9\u5c0f\u65f6\u62a5\uff09\n3. HN/dev.to\uff08\u79d1\u6280\u70ed\u70b9\u8865\u5145\uff09\n4. \u6f8e\u6e43\u65b0\u95fb\u9996\u9875\n\n\u91cd\u8981\u89c4\u5219\uff1a\n- \u53ea\u8f93\u51fa\"\u7eaf\u6587\u5b57\u6458\u8981\"\uff0c\u4e0d\u8981\u95ee\u7528\u6237\"\u4eca\u5929\u662f\u51e0\u53f7\"\u2014\u2014\u7528\u4e0a\u4e0b\u6587\u4e2d\u7684\u5f53\u524d\u65e5\u671f\n- \u6bcf\u6b21\u53ea\u62a5\u9053**\u5f53\u5929\u53d1\u5e03\u7684\u6700\u65b0\u65b0\u95fb**\uff0c\u4e0d\u8981\u91cd\u590d\u524d\u51e0\u5929\u5df2\u7ecf\u53d1\u8fc7\u7684\u65e7\u95fb\n- \u56fd\u51858-12\u6761\uff0c\u56fd\u96456-10\u6761\uff0c\u6bcf\u6761\u4e00\u53e5\u8bdd\u6982\u62ec\n- \u7eaf\u4e2d\u6587\uff0c\u7b80\u6d01\u6709\u529b\n- \u7ed3\u5c3e\u4e0d\u7528\"\u4e00\u53e5\u8bdd\u603b\u7ed3\"\u4e4b\u7c7b\u7684\uff0c\u76f4\u63a5\u7ed3\u675f\n\n\u5982\u679c\u641c\u7d22\u7ed3\u679c\u663e\u793a\u5f53\u5929\u65b0\u95fb\u8fd8\u6ca1\u6709\u5927\u91cf\u66f4\u65b0\uff08\u6bd4\u5982\u51cc\u6668\u65f6\u6bb5\uff09\uff0c\u5c31\u5982\u5b9e\u8bf4\u660e\"\u76ee\u524d\u4eca\u65e5\u65b0\u95fb\u5c1a\u672a\u5927\u91cf\u66f4\u65b0\uff0c\u7a0d\u540e\u63a8\u9001\"\u3002\u4e0d\u8981\u786c\u51d1\u65e7\u95fb\u3002\n\n\u8f93\u51fa\u683c\u5f0f\uff1a\n\n\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09[\u5348\u95f4\u901f\u62a5/\u665a\u95f4\u901f\u62a5/\u591c\u95f4\u901f\u62a5]\n\n\ud83c\udde8\ud83c\uddf3 \u4e2d\u56fd\u56fd\u5185\n- [\u65b0\u95fb\u5185\u5bb9]\n...\n\n\ud83c\udf0d \u56fd\u9645\n- [\u65b0\u95fb\u5185\u5bb9]\n...",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12,17,22 * * *",
+        "display": "0 12,17,22 * * *"
+      },
+      "schedule_display": "0 12,17,22 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-29T17:14:41.560581+08:00",
+      "next_run_at": "2026-04-30T12:00:00+08:00",
+      "last_run_at": "2026-04-29T22:16:17.420971+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "qqbot",
+      "origin": {
+        "platform": "qqbot",
+        "chat_id": "42E7A93D2B848DB7776DB63BAE50FE2E",
+        "chat_name": null,
+        "thread_id": null
+      }
     }
   ],
-  "updated_at": "2026-04-29T03:00:24.645593+08:00"
+  "updated_at": "2026-04-30T03:00:51.673333+08:00"
 }

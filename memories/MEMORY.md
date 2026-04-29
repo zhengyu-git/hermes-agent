@@ -75,3 +75,5 @@ WSL网络搜索可用接口（2026年4月实测）：HN Algolia API（hn.algolia
 PerfInsight模版用"场景结束时间"标识对局，不用开始时间。detail接口参数：username/Appid(大写A)/token/Idstr，不需要env参数。username备选：traviszeng、Shen、dannyzhou，一个失效就换下一个。FPS等指标全部取PerfSight平台算好的值，不准自己算。UnrealInsights路径 D:\Program Files\Epic Games\UE_5.4 是错的，用户会提供正确路径。写Windows bat脚本要用纯英文，避免CMD编码乱码。
 §
 用户询问过天涯神帖"因为贱-所以生活艰辛!说出真相-底层会更绝望-大鹏金翅明王"的内容，已从今日头条找到解读版并总结。用户对天涯神帖有兴趣，特别是历史/金融类。创建了search-tianya-posts技能记录搜索经验。
+§
+用户拥有域名 zhengyy.com，在阿里云（万网/hichina）购买，DNS 托管在阿里云（NS: dns15.hichina.com / dns16.hichina.com）。A 记录指向 43.139.140.22（腾讯云服务器）。用户计划将 DNS 迁移到 Cloudflare，通过 Cloudflare Tunnel 在 WSL 内搭建网站实现公网访问，子域名为 myapp.zhengyy.com。用户已用谷歌账号登录 Cloudflare，正在操作添加站点。

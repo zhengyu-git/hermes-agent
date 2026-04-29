@@ -145,3 +145,28 @@ Google News 页面结构：每条新闻 = `来源 + 标题 + 时间 + 作者`，
 - HN 的 `search` 端点按相关度排序，`search_by_date` 端点按时间排序
 - Reuters 通过 Google News RSS 访问时，中文环境需去掉 `hl=zh-CN&gl=CN` 参数
 - 用户要求所有新闻输出必须使用纯中文，英文标题需翻译
+
+## Cron Job 执行注意事项
+
+### 1. Python 环境问题
+- Cron 环境中 `pip` / `pip3` 可能不可用（路径问题），不要尝试安装 yfinance 等第三方包
+- 直接使用 Python 标准库 `urllib.request` + Yahoo Finance Chart API，无需外部依赖
+- 执行 Python 脚本用 `python3 /path/to/script.py`，确保脚本零外部依赖
+
+### 2. 使用独立脚本而非管道
+- 所有 HTTP 请求写在 Python 脚本里，用 `urllib.request` 处理，不依赖 shell 管道
+- 正确流程：先用 `write_file` 工具创建脚本文件，再用 `terminal()` 执行
+- `write_file` 在 `execute_code` sandbox 中不可用，需要作为独立工具调用
+
+### 3. 并行抓取策略
+- 市场数据脚本和新闻脚本可以并行执行（两个 `terminal()` 调用同时发起）
+- 市场数据脚本：Yahoo Finance API 的 6 个品种逐一请求
+- 新闻脚本：HN Algolia + dev.to + Reuters/Google News RSS，三个源合并在一个脚本中，各自 try/except 容错
+
+### 4. 数据验证
+- 执行后检查 Yahoo Finance 返回的时间戳，确认数据是最新的交易日
+- 如果 Google News RSS 返回空结果或仅有 RSS 频道名，尝试备用查询词（如 `reuters+financial+markets`）
+
+### 5. 翻译与本地化
+- 所有新闻标题和内容必须翻译为中文，不允许出现英文
+- 如果 LLM 本身翻译能力足够，直接在最终输出时翻译，无需额外调用翻译 API
