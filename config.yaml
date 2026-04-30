@@ -2,7 +2,7 @@ model:
   default: deepseek-ai/deepseek-v4-pro
   provider: nvidia
   base_url: https://integrate.api.nvidia.com/v1
-  api_key: REDACTED_GROQ_KEY
+  api_key: GROQ_KEY_REDACTED
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
@@ -294,10 +294,11 @@ approvals:
   timeout: 60
   cron_mode: deny
 command_allowlist:
-- script execution via -e/-c flag
 - stop/restart system service
-- script execution via heredoc
 - recursive delete
+- script execution via -e/-c flag
+- delete in root path
+- script execution via heredoc
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -361,11 +362,11 @@ web:
 custom_providers:
 - name: Api-xai.ainaibahub-claude-sonnet-4.6
   base_url: https://api-xai.ainaibahub.com/v1
-  api_key: REDACTED_OPENAI_KEY
+  api_key: OPENAI_KEY_REDACTED
   model: claude-sonnet-4-6
 - name: openai/gpt-oss-120b
   base_url: https://api.groq.com/openai/v1
-  api_key: REDACTED_GROQ_KEY
+  api_key: GROQ_KEY_REDACTED
   model: openai/gpt-oss-120b
 
 # ── Fallback Model ────────────────────────────────────────────────────

@@ -77,3 +77,9 @@ PerfInsight模版用"场景结束时间"标识对局，不用开始时间。deta
 用户询问过天涯神帖"因为贱-所以生活艰辛!说出真相-底层会更绝望-大鹏金翅明王"的内容，已从今日头条找到解读版并总结。用户对天涯神帖有兴趣，特别是历史/金融类。创建了search-tianya-posts技能记录搜索经验。
 §
 用户拥有域名 zhengyy.com，在阿里云（万网/hichina）购买，DNS 托管在阿里云（NS: dns15.hichina.com / dns16.hichina.com）。A 记录指向 43.139.140.22（腾讯云服务器）。用户计划将 DNS 迁移到 Cloudflare，通过 Cloudflare Tunnel 在 WSL 内搭建网站实现公网访问，子域名为 myapp.zhengyy.com。用户已用谷歌账号登录 Cloudflare，正在操作添加站点。
+§
+用户拥有域名 zhengyy.com（不是 zhengyy.com），在阿里云购买，DNS 托管在阿里云（hichina），A 记录指向腾讯云服务器 43.139.140.22。目前在尝试将 zhengyy.com 迁移到 Cloudflare 并用 Cloudflare Tunnel 从 WSL 搭建公网网站。Cloudflare NS 已改为 bingo.ns.cloudflare.com 和 woz.ns.cloudflare.com，正在等待 NS 生效。WSL 已安装 cloudflared v2026.3.0（路径 ~/.local/bin/cloudflared），cloudflared tunnel login 遇到回调问题，正在排查。
+§
+用户域名 zhengyy.com（不是 zhengyu.com），在阿里云购买，DNS 已切到 Cloudflare（NS: bingo.ns.cloudflare.com, woz.ns.cloudflare.com）。Cloudflare Tunnel 已配置：隧道名 myapp，ID 83172e60-ae0a-410f-903f-243d29be1781，token 已获取。Public hostname: myapp.zhengyy.com → http://localhost:8080。cloudflared 安装在 ~/.local/bin/cloudflared（v2026.3.0），WSL 无 sudo 权限。测试页面在 /home/v-zhengyu002/test-site/index.html。叠纸内网 DNS 10.255.255.254，WSL 本地无法解析 Cloudflare 新增域名但公网可访问。
+§
+域名 zhengyy.com（不是 zhengyu.com），阿里云购买，DNS 托管在阿里云（hichina），已迁移到 Cloudflare（NS: bingo.ns.cloudflare.com / woz.ns.cloudflare.com）。Cloudflare 账号用谷歌登录。Cloudflare Tunnel token: eyJhIjoiNDYzNWI3ZWRmYWM0NWFlMGE4YTg1MDg3MmE5ZjVhZDMi...
