@@ -1,8 +1,8 @@
 model:
-  default: openai/gpt-oss-120b
-  provider: nvidia
-  base_url: https://integrate.api.nvidia.com/v1
-  api_key:  REDACTED
+  default: MiniMax-M2.7
+  provider: minimax-cn
+  base_url: https://api.minimaxi.com/v1
+  api_key: REDACTED
 providers: {}
 fallback_providers:
 - provider: nvidia
@@ -140,6 +140,7 @@ compression:
   target_ratio: 0.2
   protect_last_n: 20
   hygiene_hard_message_limit: 400
+  protect_first_n: 3
 prompt_caching:
   cache_ttl: 5m
   long_lived_prefix: true
@@ -164,7 +165,7 @@ auxiliary:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 120
     extra_body: {}
     download_timeout: 30
@@ -172,21 +173,21 @@ auxiliary:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 360
     extra_body: {}
   compression:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 120
     extra_body: {}
   session_search:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
     max_concurrency: 3
@@ -194,49 +195,49 @@ auxiliary:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
   approval:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
   mcp:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
   title_generation:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
   triage_specifier:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 120
     extra_body: {}
   curator:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 600
     extra_body: {}
   flush_memories:
     provider: auto
     model: ''
     base_url: ''
-    api_key:  REDACTED
+    api_key: ''
     timeout: 30
     extra_body: {}
 display:
@@ -278,6 +279,7 @@ display:
   background_process_notifications: all
 dashboard:
   theme: default
+  show_token_analytics: false
 privacy:
   redact_pii: false
 tts:
@@ -340,7 +342,7 @@ delegation:
   model: ''
   provider: ''
   base_url: ''
-  api_key:  REDACTED
+  api_key: ''
   inherit_mcp_toolsets: true
   max_iterations: 50
   child_timeout_seconds: 600
@@ -380,6 +382,9 @@ discord:
   free_response_channels: ''
   allowed_channels: ''
   auto_thread: true
+  thread_require_mention: false
+  history_backfill: true
+  history_backfill_limit: 50
   reactions: true
   channel_prompts: {}
   dm_role_auth_guild: ''
@@ -405,12 +410,13 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
-- find -delete
 - script execution via heredoc
-- stop/restart system service
 - script execution via -e/-c flag
+- stop/restart system service
 - recursive delete
 - delete in root path
+- kill process via pgrep expansion (self-termination)
+- find -delete
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -456,7 +462,9 @@ sessions:
   vacuum_after_prune: true
   min_interval_hours: 24
 onboarding:
-  seen: {}
+  seen:
+    tool_progress_prompt: true
+    busy_input_prompt: true
 updates:
   pre_update_backup: false
   backup_keep: 5
@@ -466,7 +474,7 @@ lsp:
   wait_timeout: 5.0
   install_strategy: auto
   servers: {}
-_config_version: 22
+_config_version: 23
 session_reset:
   mode: both
   idle_minutes: 1440
@@ -494,11 +502,11 @@ platform_toolsets:
 custom_providers:
 - name: Api-xai.ainaibahub-claude-sonnet-4.6
   base_url: https://api-xai.ainaibahub.com/v1
-  api_key:  REDACTED
+  api_key: REDACTED
   model: claude-sonnet-4-6
 - name: openai/gpt-oss-120b
   base_url: https://api.groq.com/openai/v1
-  api_key:  REDACTED
+  api_key: REDACTED
   model: openai/gpt-oss-120b
 QQBOT_HOME_CHANNEL: 42E7A93D2B848DB7776DB63BAE50FE2E
 

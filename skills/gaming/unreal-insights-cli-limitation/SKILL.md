@@ -65,9 +65,8 @@ UnrealInsights CLI cannot export CSV/Timing data automatically — tested on bot
   - Event type names stored in chunk 0 metadata
 
 ## Paths
-- UE 5.4: `D:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealInsights.exe`（已安装，2026-04-27）
-- UE 5.7: `D:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealInsights.exe`
-- WSL UE 5.4: `/mnt/d/Program Files/Epic Games/UE_5.4/Engine/Binaries/Win64/UnrealInsights.exe`
+- UE 5.7: `D:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealInsights.exe`（用户当前版本）
+- WSL UE 5.7: `/mnt/d/Program Files/Epic Games/UE_5.7/Engine/Binaries/Win64/UnrealInsights.exe`
 - Trace 文件目录: `D:\ZY_Files\trace文件\`（含中文，注意路径处理）
 
 ## Windows 拖拽导出脚本（bat）— ⚠️ UE 5.7 不支持
@@ -95,13 +94,15 @@ UnrealInsights CLI cannot export CSV/Timing data automatically — tested on bot
    ```
 5. **用户要求**: 不要修改任何 Windows 软件设置，脚本只做只读+导出
 
-### 推荐脚本（UE 5.4，支持中文路径）
+### 推荐脚本（仅参考，CLI 不工作）— UE 5.7
+
+> ⚠️ 以下脚本使用 `-ExecOnCompleteCmd` 参数，经实测 UE 5.7 CLI 不支持自动导出，脚本无法正常工作。仅保留作参考，实际请用 GUI 手动导出。
 
 ```bat
 @echo off
 chcp 65001 >nul
 echo ============================================
-echo  UE 5.4 CLI CSV Export
+echo  UE 5.7 CLI CSV Export (参考，CLI不支持)
 echo ============================================
 
 if not exist "C:\ue_export_temp" mkdir "C:\ue_export_temp"
@@ -121,7 +122,7 @@ echo [Step 2] Write RSP file...
 echo TimingInsights.ExportTimerStatistics C:\ue_export_temp\TimerStats.csv > "C:\ue_export_temp\export_commands.rsp"
 
 echo [Step 3] Run UnrealInsights...
-"D:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealInsights.exe" -OpenTraceFile="C:\ue_export_temp\trace.utrace" -NoUI -AutoQuit -ExecOnCompleteCmd="@C:\ue_export_temp\export_commands.rsp"
+"D:\Program Files\Epic Games\UE_5.7\Engine\Binaries\Win64\UnrealInsights.exe" -OpenTraceFile="C:\ue_export_temp\trace.utrace" -NoUI -AutoQuit -ExecOnCompleteCmd="@C:\ue_export_temp\export_commands.rsp"
 
 echo.
 echo [Step 4] Check results:
@@ -134,7 +135,7 @@ pause
 ```
 
 **关键点**：
-- UE 路径用 UE_5.4（不是 5.7）
+- UE 路径用 UE_5.7
 - `chcp 65001` 处理中文
 - `pushd` 进入中文目录再 copy，避免中文路径问题
 - WSL 写完后必须 `sed -i 's/$/\r/' file.bat` 转 CRLF

@@ -25,6 +25,9 @@ triggers:
 - 新浪国际热点小时报直接 URL — 链接动态失效
 - 澎湃首页 — JS 渲染，curl 不可见内容
 
+**⚠️ 重要：峰会期间新闻源失效问题（2026-05-13 观察）**
+当有 元首外交/中美最高层会晤 等重大峰会时，人民网/新华网/中新社 首页会被峰会报道刷屏（10-15条全是同一类标题），导致 requests 抓取返回内容高度重复。解决：切换到 section 页或替代源（网易国际、凤凰网、新浪财经），详见下方方法7。
+
 ## 抓取方法（已验证可用）
 
 ### 方法1：浏览器直接抓取（推荐用于 JS 渲染站，但 cron 模式下可能超时/404）
@@ -179,7 +182,10 @@ prev_files = sorted([
 all_prev_text = ""
 for f in prev_files:
     with open(f, 'r', encoding='utf-8') as fp:
-        all_prev_text += fp.read()
+        content = fp.read()
+        # ⚠️ 必须只提取 ## Response 部分，否则 cron prompt 中的关键词会产生误判
+        m = re.search(r'## Response\s*\n+(.*)', content, re.DOTALL)
+        all_prev_text += m.group(1) + "\n" if m else ""
 
 # 2. 候选新闻列表
 candidates = ["候选新闻条目1", "候选新闻条目2", ...]
@@ -202,6 +208,14 @@ new_items = [item for item in candidates if is_truly_new(item, all_prev_text)]
 - `"余额宝跌破"` → 前5推送未覆盖，✅ 可用
 - `"三星退出中国"` → 前5推送仅有"三星突然公告所有家电产品退出中国大陆市场"类似表述，替换为"香港首季经济"等真正新条目
 - **同义表达也需过滤**：若前次推送"三星退出中国大陆"，新条目即使写"三星家电退出中国市场"也属于重复（核心词"三星"+"退出"+"中国"重复）
+
+**⚠️ 人名去重陷阱（重要！已发生误排除，2026-05-14）**：
+- **问题**：仅因为人名重叠就排除整条新闻，导致误杀。例如"黄仁勋登上空军一号"（晚间推送）排除了"黄仁勋夫妇捐赠算力"（夜间推送新事件）——两者完全无关，但substring匹配命中"黄仁勋"导致错误排除。
+- **正确做法**：
+  1. **人名（2-4字）不能单独作为排除依据**，必须结合事件关键词判断
+  2. 提取候选新闻的核心事件短语（如"捐赠算力""登上空军一号"），用事件短语而非人名去重
+  3. 排除逻辑：`if 人名 in prev_text AND 事件相关词也在prev_text中 → 排除`；`if 人名在prev_text中 BUT 事件完全不同 → 保留`
+  4. 简言之：短人名命中的案子，要看"人名+动词/宾语"组合是否真的重复，而不是仅看人名
 
 ### 已验证有效的 Python requests + regex 数据源（2026年5月实测）
 
@@ -263,21 +277,66 @@ def fetch_news_clean(url):
         return []
 ```
 
-### 已验证可用的数据源
+### 实际执行代码示例（包含编码处理）
+
+```python
+import requests
+import re
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
+
+def fetch_titles(url):
+    """requests + regex 抓取新闻标题列表（自动处理编码）"""
+    try:
+        r = requests.get(url, headers=headers, timeout=15)
+        # ⚠️ 关键：自动检测真实编码，很多中国新闻站用 GBK/GB2312 而非 UTF-8
+        r.encoding = r.apparent_encoding or 'utf-8'
+        text = re.sub(r'<script[^>]*>.*?</script>', '', r.text, flags=re.DOTALL)
+        text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.DOTALL)
+        titles = re.findall(r'<a[^>]+href=[^>]+>([^<]{10,80})</a>', text)
+        nav = {'首页','新闻','财经','体育','娱乐','军事','科技','社会','视频','图片','更多','相关','推荐'}
+        titles = [t.strip() for t in titles if t.strip() not in nav and 10 < len(t.strip()) < 80]
+        return titles[:30]
+    except:
+        return []
+```
+
+### ⚠️ requests + regex 方法的实测局限（2026-05-15 执行发现）
+
+**成功率不高的原因**：
+1. **编码问题**：央广网(news.cnr.cn)、中青网(cyol.com) 等使用 GBK/GB2312 编码，`r.encoding` 若误设为 utf-8 会导致全部乱码（`�ڰ����ں�־Ը����ʿ�ź�����װ������`）。必须用 `r.apparent_encoding` 自动检测。
+2. **JS渲染**：澎湃(thepaper.cn) → requests 只返回稀疏HTML（仅ICP备案信息可见），新闻列表完全不可见。
+3. **内容重复**：人民网/新华网/中新社 在峰会期间（中美最高层会晤等）首页会被刷屏，10-15条全是同一类标题，难以找到有效增量。
+4. **结论**：requests + regex **单独使用成功率约60-70%**，必须配合浏览器方法（方法5：360搜索"新闻早知道"）作为主要来源，此方法仅作补充。
+
+### 已验证可用的数据源（requests + regex 实测 2026-05-15）
 
 | 网站 | URL | 可用性 | 备注 |
 |------|-----|--------|------|
-| **人民网** | `http://www.people.com.cn/` | ✅ 高 | 官方政策/时政新闻 |
-| **新华网** | `http://www.news.cn/` | ✅ 高 | 新华社官方新闻 |
-| **中国新闻网** | `https://www.chinanews.com/` | ✅ 高 | 综合新闻 |
-| **澎湃新闻** | `https://www.thepaper.cn/` | ✅ 高 | 深度报道/时政 |
-| **搜狐新闻** | `https://news.sohu.com/` | ✅ 高 | 综合新闻 |
-| **新浪新闻** | `https://news.sina.com.cn/` | ✅ 高 | 综合新闻 |
-| **新浪国际** | `https://news.sina.com.cn/world/` | ✅ 高 | 国际新闻 |
-| **网易新闻** | `https://news.163.com/` | ✅ 高 | 综合新闻 |
-| **央视网** | `https://news.cctv.com/` | ✅ 高 | 央视报道 |
-| **人民网国际** | `http://world.people.com.cn/` | ✅ 高 | 国际版块 |
-| **新浪财经** | `https://finance.sina.com.cn/` | ⚠️ 部分 | 需要额外解析日期字段 |
+| **人民网** | `http://www.people.com.cn/` | ✅ 可用 | 政策/时政，但峰会期重复率高 |
+| **新华网** | `http://www.news.cn/` | ✅ 可用 | 综合，峰会期重复率高 |
+| **中新社** | `https://www.chinanews.com/` | ✅ 可用 | 综合 |
+| **央视** | `https://news.cctv.com/` | ✅ 可用 | 央视报道 |
+| **新浪国际** | `https://news.sina.com.cn/world/` | ✅ 可用 | 国际新闻 |
+| **凤凰网** | `https://www.ifeng.com/` | ✅ 可用 | 综合，含社会/国际 |
+| **中华网** | `https://news.china.com/` | ✅ 可用 | 国际新闻（如内塔尼亚胡、凯文·沃什、美以伊局势） |
+| **网易新闻** | `https://news.163.com/` | ✅ 可用 | 综合（如日本"再军事化"、乌克兰基辅遭空袭） |
+| **网易军事** | `https://war.163.com/` | ✅ 可用 | 俄乌/中东战事 |
+| **财新网** | `https://www.caixin.com/` | ✅ 好用 | 社会/财经/国际（绵阳地产商案、英国卫生大臣辞职、伊朗扣押中企船只） |
+| **界面新闻** | `https://www.jiemian.com/` | ✅ 好用 | 财经/市场/评论（白银跌幅9%、比特币下跌、社保新规） |
+| **中经社(新华网财经)** | `https://www.xinhuanet.com/finance/` | ✅ 可用 | A股/公募/具身智能（今日实测千亿市值公司突破200家、存储芯片短缺） |
+| **新京报** | `https://www.bjnews.com.cn/` | ✅ 可用 | 北京/社会（巴西免签、具身智能机器人） |
+| **北京日报** | `https://news.bjd.com.cn/` | ✅ 可用 | 北京新闻（具身智能、副中心发布） |
+| **光明网** | `https://www.gmw.cn/` | ✅ 可用 | 综合（合武高铁、云南"蝶瀑"） |
+| **经济观察报** | `https://www.eeo.com.cn/` | ✅ 可用 | 财经/市场 |
+| **澎湃新闻** | `https://www.thepaper.cn/` | ❌ 失败 | JS渲染，requests仅见ICP信息 |
+| **央广网** | `https://news.cnr.cn/` | ⚠️ 乱码 | GBK编码，需 `r.apparent_encoding` |
+| **中青网** | `http://news.youth.cn/` | ⚠️ 乱码 | GBK编码，需 `r.apparent_encoding` |
+| **观察者网** | `https://www.guancha.cn/` | ⚠️ 内容重复 | 首页大量峰会报道刷屏 |
+
+**本次执行还发现**：`news.163.com`（网易）和 `war.163.com`（网易军事）返回内容质量高、时效性强，是容易被忽视的有效来源，建议优先抓取。
 
 ### 使用建议
 
@@ -319,12 +378,13 @@ for name, url in urls.items():
 
 | 方法 | 优势 | 适用场景 | 局限性 |
 |------|------|----------|--------|
-| **browser_snapshot** | 可处理JS渲染页 | 东方财富、360搜索等 | cron模式易触发bot检测 |
-| **curl → execute_code** | 可处理大HTML | 百度新闻首页 | 部分站被拦截 |
-| **Python requests + regex** | **绕过大多数bot检测**，简单可靠 | 绝大多数新闻站 | 无法处理需要JS的站，需手写解析逻辑 |
+| **browser_snapshot（360搜索新闻早知道）** | JS渲染页克星，摘要完整 | 所有中国新闻站 | cron 模式有时触发 bot 检测，但搜索结果页通常可用 |
+| **browser_snapshot（东方财富/新浪国际）** | 处理JS渲染 | 东方财富、新浪国际 | 同上 |
+| **Python requests + regex** | 绕过浏览器检测，响应快 | 静态HTML站点 | ⚠️ 必须用 `r.apparent_encoding` 处理编码；JS渲染站失效 |
+| **curl → execute_code** | 可处理大HTML | 百度新闻首页 | 部分站被安全扫描拦截 |
 | **jina.ai / allorigins** | 无需编码 | 快速摘要 | 对中国站几乎不可用 |
 
-**结论**：`daily-news-digest` cron 任务在 browser 方法失败后，应**优先尝试 Python requests + regex 方法**（方法7），成功率约80%，已覆盖主要中文新闻站。
+**结论**：`daily-news-digest` cron 任务**首选 browser 方法（360搜索"新闻早知道"）**，requests + regex 仅作备选。requests 方法必须设置 `r.apparent_encoding` 自动检测编码，否则大量中国站返回乱码。
 
 - `global-news`：全球要闻汇总，包含财经表格、HN热点、Reuters新闻，格式更结构化
 - `daily-news-digest`：专门的中文每日新闻推送，面向国内用户，按国内/国际分类，来自东方财富/新浪等中文源，适合cron定时推送

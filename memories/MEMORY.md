@@ -20,14 +20,7 @@ UE5 性能分析（综合Epic官方/CSDN/UWA，含Nanite/Lumen/Unreal Insights�
 §
 App Key=116a83402fa27c74fe0e571f4a32a69d（之前记录的多了两个32a，已修正）
 §
-PDF目录：~/.hermes/pdf_contents/（原文件名+.txt，共7个，均已提取文本）
-1. 深入理解计算机系统(中文版).pdf.txt — CSAPP教材，1616页，内容：程序结构和执行、处理器/内存/网络/并发编程
-2. VICKY学姐-读书笔记.pdf.txt — 笔记种类（摘要/评注/心得）、写法、形式
-3. VICKY学姐-速读技巧.pdf.txt — 5个速读方法：找关键词/略读/SQ3R等
-4. VICKY学姐-10种阅读技巧.pdf.txt — 10种阅读方法
-5. 原则(瑞达利欧).pdf.txt — 488页，Ray Dalio的 生活+工作 原则
-6. 原子习惯.pdf.txt — 285页，James Clear，好习惯累积法则
-7. CSAPP第三版扫描版.pdf.txt — 775页，第三版英文翻译版
+PDF目录已清空，不存放任何本地PDF文本。
 §
 用户是游戏性能工程师，工作于无限暖暖(Infinity Nikki)，使用 UE5、Mac M2、PerfInsight、Unreal Insights 等工具。用户喜欢自然随和的中文，像正常人聊天，可以适当调皮，会开玩笑（比如"智能裤"）。喜欢简洁，不废话。用户希望AI能自主解决问题、联网搜索新方法、自主学习创新；遇到问题时希望我先自己尝试解决，而不是直接说"不行"。vision_analyze 工具不支持本地路径（/mnt/c 或 Windows 路径），只接受 HTTP URL 或特定格式的本地路径。平时多学习自然的中文表达，提升处理事情的能力。
 §
@@ -73,8 +66,6 @@ WSL网络搜索可用接口（2026年4月实测）：HN Algolia API（hn.algolia
 - 仓库：https://github.com/zhengyu-git/hermes-agent，WSL下GitHub畅通；Gitee不通（企业网络封锁）
 §
 PerfInsight模版用"场景结束时间"标识对局，不用开始时间。detail接口参数：username/Appid(大写A)/token/Idstr，不需要env参数。username备选：traviszeng、Shen、dannyzhou，一个失效就换下一个。FPS等指标全部取PerfSight平台算好的值，不准自己算。UnrealInsights路径 D:\Program Files\Epic Games\UE_5.4 是错的，用户会提供正确路径。写Windows bat脚本要用纯英文，避免CMD编码乱码。
-§
-用户询问过天涯神帖"因为贱-所以生活艰辛!说出真相-底层会更绝望-大鹏金翅明王"的内容，已从今日头条找到解读版并总结。用户对天涯神帖有兴趣，特别是历史/金融类。创建了search-tianya-posts技能记录搜索经验。
 §
 用户拥有域名 zhengyy.com，在阿里云（万网/hichina）购买，DNS 托管在阿里云（NS: dns15.hichina.com / dns16.hichina.com）。A 记录指向 43.139.140.22（腾讯云服务器）。用户计划将 DNS 迁移到 Cloudflare，通过 Cloudflare Tunnel 在 WSL 内搭建网站实现公网访问，子域名为 myapp.zhengyy.com。用户已用谷歌账号登录 Cloudflare，正在操作添加站点。
 §

@@ -11,6 +11,48 @@ triggers:
 
 当需要把文件备份到 GitHub 但遇到 push protection 拦截（如 GH013）时，建新仓库绕过原有仓库的安全策略。
 
+## Pre-flight: Token Validity Check — MANDATORY
+
+Before any GitHub API call or git operation, verify the token is valid:
+
+```python
+import urllib.request, json, os
+
+# Find token: GIT_TOKEN env var, or read from ~/.git-credentials
+token = os.environ.get("GIT_TOKEN") or os.environ.get("GITHUB_TOKEN")
+if not token:
+    creds_path = os.path.expanduser("~/.git-credentials")
+    if os.path.exists(creds_path):
+        with open(creds_path) as f:
+            content = f.read().strip()
+        if "REDACTED" in content or not content:
+            print("ERROR: ~/.git-credentials contains placeholder REDACTED or is empty. Token not available.")
+            exit(1)
+        # Extract token from URL format: https://TOKEN@github.com
+        token = content.replace("https://", "").replace("@github.com", "")
+
+if not token:
+    print("ERROR: No GitHub token found. Set GIT_TOKEN or populate ~/.git-credentials.")
+    exit(1)
+
+# Verify token via GitHub API
+req = urllib.request.Request(
+    "https://api.github.com/user",
+    headers={"Authorization": f"token {token}"}
+)
+try:
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        data = json.loads(resp.read())
+        print(f"✓ Token valid for user: {data.get('login')}")
+except urllib.error.HTTPError as e:
+    body = json.loads(e.read().decode())
+    print(f"✗ Token INVALID: {body.get('message')} (HTTP {e.code})")
+    print("DO NOT proceed — replace the token before retrying.")
+    exit(1)
+```
+
+If the check fails with HTTP 401 (`Bad credentials`), the token is revoked/expired/invalid. Do not retry the API call or git operation — it will fail the same way. Replace the token first.
+
 ## 流程
 
 ### 1. 用 GitHub API 创建仓库

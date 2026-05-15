@@ -18,15 +18,15 @@
       "schedule_display": "0 9 * * *",
       "repeat": {
         "times": null,
-        "completed": 20
+        "completed": 23
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T12:20:32.718048+08:00",
-      "next_run_at": "2026-05-10T09:00:00+08:00",
-      "last_run_at": "2026-05-09T09:03:10.664762+08:00",
+      "next_run_at": "2026-05-16T09:00:00+08:00",
+      "last_run_at": "2026-05-14T09:03:14.583857+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -56,15 +56,15 @@
       "schedule_display": "0 2 * * *",
       "repeat": {
         "times": null,
-        "completed": 18
+        "completed": 23
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T20:30:11.734316+08:00",
-      "next_run_at": "2026-05-11T02:00:00+08:00",
-      "last_run_at": "2026-05-10T02:01:31.700121+08:00",
+      "next_run_at": "2026-05-17T02:00:00+08:00",
+      "last_run_at": "2026-05-16T02:00:36.815727+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -77,42 +77,9 @@
       }
     },
     {
-      "id": "6f4a3fec3f12",
-      "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
-      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efdhermes\u6838\u5fc3\u6587\u4ef6\u5230GitHub\u3002\n\n**\u5907\u4efd\u8303\u56f4\uff1a**\n- ~/.hermes/skills/\n- ~/.hermes/memories/\n- ~/.hermes/cron/\n- ~/.hermes/perfsight_docs/\n- ~/.hermes/perfsight_openapi_docs/\n- ~/.hermes/config.yaml\n- ~/.hermes/SOUL.md\n\n**\u5907\u4efd\u6d41\u7a0b\uff1a**\n1. \u6253\u5305\u4ee5\u4e0a\u6587\u4ef6\u4e3atar.gz\uff08\u6392\u9664.pyc\u3001__pycache__\u3001*.log\u3001state.db*\u3001*.lock\u7b49\u4e34\u65f6\u6587\u4ef6\uff09\n2. \u89e3\u538b\u5230\u4e34\u65f6\u76ee\u5f55 /tmp/hermes-github-backup/\n3. \u68c0\u67e5\u662f\u5426\u6709\u5185\u5bb9\u53d8\u66f4\uff08\u6709\u53d8\u66f4\u624dpush\uff09\uff1a\n   ```bash\n   cd /tmp/hermes-github-backup\n   git init --initial-branch=master\n   git remote add origin https://ghp_***MASKED***@github.com/zhengyu-git/hermes-agent.git\n   git add -A\n   git diff --cached --quiet || git commit -m \"auto backup $(date '+%Y-%m-%d %H:%M')\"\n   git push origin master --quiet\n   ```\n4. push\u5b8c\u6210\u540e\u5220\u9664\u4e34\u65f6\u76ee\u5f55\n5. \u8f93\u51fa\u5907\u4efd\u7ed3\u679c\uff08\u6210\u529f/\u65e0\u53d8\u66f4/\u5931\u8d25\uff09\n\n\u5982\u679cgit push\u5931\u8d25\uff08\u7f51\u7edc\u95ee\u9898\u7b49\uff09\uff0c\u4e0d\u8981\u91cd\u8bd5\uff0c\u76f4\u63a5\u7ed3\u675f\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\u3002",
-      "skills": [],
-      "skill": null,
-      "model": null,
-      "provider": null,
-      "base_url": null,
-      "script": null,
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 3 * * *",
-        "display": "0 3 * * *"
-      },
-      "schedule_display": "0 3 * * *",
-      "repeat": {
-        "times": null,
-        "completed": 16
-      },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-04-24T11:16:07.749028+08:00",
-      "next_run_at": "2026-05-11T03:00:00+08:00",
-      "last_run_at": "2026-05-09T03:01:33.273968+08:00",
-      "last_status": "ok",
-      "last_error": null,
-      "last_delivery_error": null,
-      "deliver": "qqbot:42E7A93D2B848DB7776DB63BAE50FE2E",
-      "origin": null
-    },
-    {
       "id": "b713e4143df7",
       "name": "\u684c\u9762\u5907\u5fd8\u5f55\u5907\u4efd",
-      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://ghp_***MASKED***@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://ghp_***MASKED***@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://REDACTED@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://REDACTED@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
       "skills": [],
       "skill": null,
       "model": null,
@@ -127,15 +94,15 @@
       "schedule_display": "0 0 * * *",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 17
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-28T15:51:11.129981+08:00",
-      "next_run_at": "2026-05-11T00:00:00+08:00",
-      "last_run_at": "2026-05-10T00:01:42.963301+08:00",
+      "next_run_at": "2026-05-17T00:00:00+08:00",
+      "last_run_at": "2026-05-16T00:04:15.149525+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -150,7 +117,7 @@
     {
       "id": "d7786a07b9cf",
       "name": "\u6bcf\u65e5\u5b9e\u65f6\u65b0\u95fb\u63a8\u9001\uff08\u5348/\u665a/\u591c\uff09",
-      "prompt": "\u641c\u7d22\u5e76\u6574\u7406\u4eca\u5929\uff08\u5f53\u5929\uff09\u6700\u65b0\u53d1\u751f\u7684\u56fd\u5185\u5916\u91cd\u5927\u65b0\u95fb\u3002\n\n**\u3010\u53bb\u91cd\u6838\u5fc3\u89c4\u5219\u3011**\n\u540c\u4e00\u5929\u5185\uff0c\u5348\u95f4/\u665a\u95f4/\u591c\u95f4\u4e09\u6b21\u63a8\u9001\u5fc5\u987b\u907f\u514d\u5185\u5bb9\u91cd\u590d\uff1a\n- \u5348\u95f4\u901f\u62a5\uff0812\u70b9\uff09\uff1a\u4f18\u5148\u9009\u4e0a\u53488-12\u70b9\u7684\u65b0\u95fb\n- \u665a\u95f4\u901f\u62a5\uff0817\u70b9\uff09\uff1a**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u9009\u4e0b\u534812-17\u70b9\u65b0\u51fa\u7684\n- \u591c\u95f4\u901f\u62a5\uff0822\u70b9\uff09\uff1a**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u548c\u665a\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u900917\u70b9\u540e\u65b0\u51fa\u7684\n\n**\u53bb\u91cd\u5b9e\u73b0\u6b65\u9aa4\uff1a**\n1. \u67e5\u770b /home/v-zhengyu002/.hermes/cron/output/d7786a07b9cf/ \u76ee\u5f55\u4e0b\u4eca\u5929\u5df2\u63a8\u9001\u7684\u6587\u4ef6\n2. \u5982\u679c\u662f\u7b2c\u4e8c\u6b21\u6216\u7b2c\u4e09\u6b21\u63a8\u9001\uff0c\u8bfb\u53d6\u524d\u4e00\u6b21\uff08\u6216\u524d\u4e24\u6b21\uff09\u63a8\u9001\u7684.md\u6587\u4ef6\n3. \u4ece\u4e2d\u63d0\u53d6\u5df2\u62a5\u65b0\u95fb\u7684\u6838\u5fc3\u5173\u952e\u8bcd\n4. \u641c\u7d22\u65b0\u65b0\u95fb\u65f6\u8fc7\u6ee4\u6389\u5305\u542b\u8fd9\u4e9b\u5173\u952e\u8bcd\u7684\u5185\u5bb9\n5. \u7b5b\u9009\u51fa\u771f\u6b63\u65b0\u7684\u3001\u4e0e\u5df2\u62a5\u65b0\u95fb\u4e0d\u91cd\u590d\u7684\u5185\u5bb9\n\n**\u3010\u6570\u636e\u6e90\u3011**\n\u7528 execute_code \u6267\u884c Python \u4ee3\u7801\uff0c\u76f4\u63a5 requests.get \u6293\u53d6\u7ad9\u70b9\u7684\u539f\u59cb HTML\uff0c\u518d\u7528\u6b63\u5219\u63d0\u53d6\u6807\u9898\uff1a\n\n```\nimport requests, re\nheaders = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}\ndef fetch_titles(url):\n    try:\n        r = requests.get(url, headers=headers, timeout=15)\n        r.encoding = 'utf-8'\n        text = re.sub(r'<script[^>]*>.*?</script>', '', r.text, flags=re.DOTALL)\n        text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.DOTALL)\n        titles = re.findall(r'<a[^>]+href=[^>]+>([^<]{10,80})</a>', text)\n        nav = {'\u9996\u9875','\u65b0\u95fb','\u8d22\u7ecf','\u4f53\u80b2','\u5a31\u4e50','\u519b\u4e8b','\u79d1\u6280','\u793e\u4f1a','\u89c6\u9891','\u56fe\u7247','\u66f4\u591a','\u76f8\u5173','\u63a8\u8350'}\n        titles = [t.strip() for t in titles if t.strip() not in nav and 10 < len(t.strip()) < 80]\n        return titles[:30]\n    except:\n        return []\n\nfor name, url in [('\u4eba\u6c11\u7f51','http://www.people.com.cn/'),('\u65b0\u534e\u7f51','http://www.news.cn/'),('\u4e2d\u65b0\u793e','https://www.chinanews.com/'),('\u6f8e\u6e43','https://www.thepaper.cn/'),('\u592e\u89c6','https://news.cctv.com/'),('\u65b0\u6d6a\u56fd\u9645','https://news.sina.com.cn/world/')]:\n    titles = fetch_titles(url)\n    print(f\"=== {name} ===\", titles[:10])\n```\n\n**\u3010\u8f93\u51fa\u683c\u5f0f - \u91cd\u8981\uff1a\u5355\u6761\u6d88\u606f\u5305\u542b\u56fd\u5185\u548c\u56fd\u9645\u4e24\u90e8\u5206\uff0c\u7981\u6b62\u7528 --- \u5206\u9694\u3011**\n\n**\u683c\u5f0f\uff1a**\n\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09[\u5348\u95f4/\u665a\u95f4/\u591c\u95f4]\u901f\u62a5\n\n\ud83c\udde8\ud83c\uddf3 \u4e2d\u56fd\u56fd\u5185\n- [\u56fd\u5185\u65b0\u95fb1]\n- [\u56fd\u5185\u65b0\u95fb2]\n...\n\n\ud83c\udf0d \u56fd\u9645\n- [\u56fd\u9645\u65b0\u95fb1]\n- [\u56fd\u9645\u65b0\u95fb2]\n...\n\n**\u89c4\u5219\uff1a**\n- **\u56fd\u518512-15\u6761\uff0c\u56fd\u964512-15\u6761**\uff0c\u6bcf\u676120\u5b57\u4ee5\u4e0a\n- \u7eaf\u4e2d\u6587\n- **\u5168\u90e8\u5185\u5bb9\u653e\u5728\u4e00\u6761\u6d88\u606f\u91cc\u8f93\u51fa\uff0c\u4e0d\u8981\u7528 --- \u6216\u4efb\u4f55\u5206\u9694\u7ebf\u62c6\u5206\u6210\u591a\u6761**\n- \u5982\u679c\u9a8c\u8bc1\u672a\u901a\u8fc7\uff08\u56fd\u5185\u6216\u56fd\u9645\u4e0d\u8db310\u6761\uff09\uff0c\u8f93\u51fa `[SILENT]`\n\n**\u3010\u8f93\u51fa\u524d\u9a8c\u8bc1\u3011**\n1. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u5185\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n2. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u9645\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n3. \u662f\u5426\u5305\u542b\u6709\u6548\u7684 emoji \u6807\u7b7e\uff08\ud83c\udde8\ud83c\uddf3 / \ud83c\udf0d\uff09",
+      "prompt": "\u641c\u7d22\u5e76\u6574\u7406\u4eca\u5929\uff08\u5f53\u5929\uff09\u6700\u65b0\u53d1\u751f\u7684\u56fd\u5185\u5916\u91cd\u5927\u65b0\u95fb\u3002\n\n**\u3010\u65f6\u95f4\u5224\u65ad - \u5fc5\u987b\u4e25\u683c\u9075\u5b88\u3011**\n\u6839\u636e\u672c\u4efb\u52a1\u7684\u6267\u884c\u65f6\u95f4\uff08cron: 0 12,17,22 * * *\uff09\uff0c\u5224\u65ad\u5f53\u524d\u662f\u54ea\u6b21\u63a8\u9001\uff1a\n- \u5982\u679c\u662f**\u7b2c\u4e00\u6b21\u8fd0\u884c\uff08\u5f53\u592912\u70b9\u5de6\u53f3\uff09** \u2192 \u6807\u9898\u5fc5\u987b\u662f\u300c\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09\u5348\u95f4\u901f\u62a5\u300d\uff0c\u5185\u5bb9\u9009\u4e0a\u53488-12\u70b9\u7684\u65b0\u95fb\n- \u5982\u679c\u662f**\u7b2c\u4e8c\u6b21\u8fd0\u884c\uff08\u5f53\u592917\u70b9\u5de6\u53f3\uff09** \u2192 \u6807\u9898\u5fc5\u987b\u662f\u300c\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09\u665a\u95f4\u901f\u62a5\u300d\uff0c**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u9009\u4e0b\u534812-17\u70b9\u65b0\u51fa\u7684\n- \u5982\u679c\u662f**\u7b2c\u4e09\u6b21\u8fd0\u884c\uff08\u5f53\u592922\u70b9\u5de6\u53f3\uff09** \u2192 \u6807\u9898\u5fc5\u987b\u662f\u300c\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09\u591c\u95f4\u901f\u62a5\u300d\uff0c**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u548c\u665a\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u900917\u70b9\u540e\u65b0\u51fa\u7684\n\n**\u3010\u6807\u9898\u7edd\u4e0d\u80fd\u5199\u9519\u3011**\n- 12\u70b9\u8fd0\u884c \u2192 \u6807\u9898\u91cc\u5fc5\u987b\u51fa\u73b0\"\u5348\u95f4\u901f\u62a5\"\n- 17\u70b9\u8fd0\u884c \u2192 \u6807\u9898\u91cc\u5fc5\u987b\u51fa\u73b0\"\u665a\u95f4\u901f\u62a5\"\uff08\u4e0d\u662f\u5348\u95f4\uff01\uff09\n- 22\u70b9\u8fd0\u884c \u2192 \u6807\u9898\u91cc\u5fc5\u987b\u51fa\u73b0\"\u591c\u95f4\u901f\u62a5\"\n\n**\u3010\u53bb\u91cd\u6838\u5fc3\u89c4\u5219 - \u5fc5\u987b\u4e25\u683c\u6267\u884c\u3011**\n\u540c\u4e00\u5929\u5185\uff0c\u5348\u95f4/\u665a\u95f4/\u591c\u95f4\u4e09\u6b21\u63a8\u9001\u5fc5\u987b\u907f\u514d\u5185\u5bb9\u91cd\u590d\uff1a\n- \u5348\u95f4\u901f\u62a5\uff0812\u70b9\uff09\uff1a\u4f18\u5148\u9009\u4e0a\u53488-12\u70b9\u7684\u65b0\u95fb\n- \u665a\u95f4\u901f\u62a5\uff0817\u70b9\uff09\uff1a**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u9009\u4e0b\u534812-17\u70b9\u65b0\u51fa\u7684\n- \u591c\u95f4\u901f\u62a5\uff0822\u70b9\uff09\uff1a**\u5fc5\u987b\u6392\u9664\u5348\u95f4\u548c\u665a\u95f4\u5df2\u53d1\u5e03\u7684\u65b0\u95fb**\uff0c\u53ea\u900917\u70b9\u540e\u65b0\u51fa\u7684\n\n**\u53bb\u91cd\u5b9e\u73b0\u6b65\u9aa4\uff08\u5fc5\u987b\u6267\u884c\uff09\uff1a**\n1. \u67e5\u770b /home/v-zhengyu002/.hermes/cron/output/d7786a07b9cf/ \u76ee\u5f55\u4e0b\u4eca\u5929\u5df2\u63a8\u9001\u7684\u6587\u4ef6\n2. \u5982\u679c\u662f\u7b2c\u4e8c\u6b21\u6216\u7b2c\u4e09\u6b21\u63a8\u9001\uff0c\u8bfb\u53d6\u524d\u4e00\u6b21\uff08\u6216\u524d\u4e24\u6b21\uff09\u63a8\u9001\u7684.md\u6587\u4ef6\n3. \u4ece\u4e2d\u63d0\u53d6\u5df2\u62a5\u65b0\u95fb\u7684\u6838\u5fc3\u5173\u952e\u8bcd\uff08\u6bcf\u4eba\u540d\u3001\u5730\u540d\u3001\u4e8b\u4ef6\u540d\uff09\n4. \u641c\u7d22\u65b0\u65b0\u95fb\u65f6**\u5fc5\u987b\u8df3\u8fc7**\u5305\u542b\u8fd9\u4e9b\u5173\u952e\u8bcd\u7684\u5185\u5bb9\n5. \u5982\u679c\u641c\u7d22\u5230\u7684\u65b0\u95fb\u4e0e\u5df2\u6709\u65b0\u95fb\u9ad8\u5ea6\u76f8\u4f3c\uff08\u5982\u4eba\u7269\u3001\u5730\u70b9\u76f8\u540c\uff09\uff0c\u5fc5\u987b\u66ff\u6362\u4e3a\u5176\u4ed6\u65b0\u95fb\n6. **\u8f93\u51fa\u524d\u68c0\u67e5\uff1a\u786e\u4fdd\u672c\u6b21\u751f\u6210\u7684\u5185\u5bb9\u4e0e\u4e4b\u524d\u63a8\u9001\u7684\u5185\u5bb9\u91cd\u590d\u7387\u4f4e\u4e8e30%**\n\n**\u3010\u6570\u636e\u6e90\u3011**\n\u7528 execute_code \u6267\u884c Python \u4ee3\u7801\uff0c\u76f4\u63a5 requests.get \u6293\u53d6\u7ad9\u70b9\u7684\u539f\u59cb HTML\uff0c\u518d\u7528\u6b63\u5219\u63d0\u53d6\u6807\u9898\uff1a\n\n```\nimport requests, re\nheaders = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}\ndef fetch_titles(url):\n    try:\n        r = requests.get(url, headers=headers, timeout=15)\n        r.encoding = 'utf-8'\n        text = re.sub(r'<script[^>]*>.*?</script>', '', r.text, flags=re.DOTALL)\n        text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.DOTALL)\n        titles = re.findall(r'<a[^>]+href=[^>]+>([^<]{10,80})</a>', text)\n        nav = {'\u9996\u9875','\u65b0\u95fb','\u8d22\u7ecf','\u4f53\u80b2','\u5a31\u4e50','\u519b\u4e8b','\u79d1\u6280','\u793e\u4f1a','\u89c6\u9891','\u56fe\u7247','\u66f4\u591a','\u76f8\u5173','\u63a8\u8350'}\n        titles = [t.strip() for t in titles if t.strip() not in nav and 10 < len(t.strip()) < 80]\n        return titles[:30]\n    except:\n        return []\n\nfor name, url in [('\u4eba\u6c11\u7f51','http://www.people.com.cn/'),('\u65b0\u534e\u7f51','http://www.news.cn/'),('\u4e2d\u65b0\u793e','https://www.chinanews.com/'),('\u6f8e\u6e43','https://www.thepaper.cn/'),('\u592e\u89c6','https://news.cctv.com/'),('\u65b0\u6d6a\u56fd\u9645','https://news.sina.com.cn/world/')]:\n    titles = fetch_titles(url)\n    print(f\"=== {name} ===\", titles[:10])\n```\n\n**\u3010\u8f93\u51fa\u683c\u5f0f - \u91cd\u8981\uff1a\u5355\u6761\u6d88\u606f\u5305\u542b\u56fd\u5185\u548c\u56fd\u9645\u4e24\u90e8\u5206\uff0c\u7981\u6b62\u7528 --- \u5206\u9694\u3011**\n\n**\u683c\u5f0f\uff1a**\n\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09[\u5348\u95f4/\u665a\u95f4/\u591c\u95f4]\u901f\u62a5\n\n\ud83c\udde8\ud83c\uddf3 \u4e2d\u56fd\u56fd\u5185\n- [\u56fd\u5185\u65b0\u95fb1]\n- [\u56fd\u5185\u65b0\u95fb2]\n...\n\n\ud83c\udf0d \u56fd\u9645\n- [\u56fd\u9645\u65b0\u95fb1]\n- [\u56fd\u9645\u65b0\u95fb2]\n...\n\n**\u89c4\u5219\uff1a**\n- **\u56fd\u518512-15\u6761\uff0c\u56fd\u964512-15\u6761**\uff0c\u6bcf\u676120\u5b57\u4ee5\u4e0a\n- \u7eaf\u4e2d\u6587\n- **\u5168\u90e8\u5185\u5bb9\u653e\u5728\u4e00\u6761\u6d88\u606f\u91cc\u8f93\u51fa\uff0c\u4e0d\u8981\u7528 --- \u6216\u4efb\u4f55\u5206\u9694\u7ebf\u62c6\u5206\u6210\u591a\u6761**\n- \u5982\u679c\u9a8c\u8bc1\u672a\u901a\u8fc7\uff08\u56fd\u5185\u6216\u56fd\u9645\u4e0d\u8db310\u6761\uff09\uff0c\u8f93\u51fa `[SILENT]`\n\n**\u3010\u8f93\u51fa\u524d\u9a8c\u8bc1\u3011**\n1. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u5185\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n2. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u9645\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n3. \u662f\u5426\u5305\u542b\u6709\u6548\u7684 emoji \u6807\u7b7e\uff08\ud83c\udde8\ud83c\uddf3 / \ud83c\udf0d\uff09\n4. **\u6807\u9898\u4e2d\u7684\u65f6\u95f4\u8bcd\uff08\u5348\u95f4/\u665a\u95f4/\u591c\u95f4\uff09\u662f\u5426\u4e0e\u5f53\u524d\u8fd0\u884c\u65f6\u95f4\u5339\u914d**",
       "skills": [],
       "skill": null,
       "model": null,
@@ -165,15 +132,55 @@
       "schedule_display": "0 12,17,22 * * *",
       "repeat": {
         "times": null,
-        "completed": 35
+        "completed": 49
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-29T17:14:41.560581+08:00",
-      "next_run_at": "2026-05-10T12:00:00+08:00",
-      "last_run_at": "2026-05-09T22:07:37.625180+08:00",
+      "next_run_at": "2026-05-16T12:00:00+08:00",
+      "last_run_at": "2026-05-15T22:06:42.488007+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "qqbot:42E7A93D2B848DB7776DB63BAE50FE2E",
+      "origin": {
+        "platform": "qqbot",
+        "chat_id": "42E7A93D2B848DB7776DB63BAE50FE2E",
+        "chat_name": null,
+        "thread_id": null
+      }
+    },
+    {
+      "id": "e7d0c9fecd2a",
+      "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
+      "prompt": "export GIT_TOKEN=REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
+      "skills": [
+        "hermes-github-backup"
+      ],
+      "skill": "hermes-github-backup",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 3
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-13T09:36:32.105049+08:00",
+      "next_run_at": "2026-05-17T03:00:00+08:00",
+      "last_run_at": "2026-05-15T17:01:16.915308+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -186,5 +193,5 @@
       }
     }
   ],
-  "updated_at": "2026-05-10T03:00:32.558081+08:00"
+  "updated_at": "2026-05-16T03:00:36.952643+08:00"
 }

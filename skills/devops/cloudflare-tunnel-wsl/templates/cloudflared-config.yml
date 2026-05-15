@@ -1,0 +1,19 @@
+# Cloudflare Tunnel 配置模板
+# 放到 ~/.cloudflared/config.yml
+#
+# credentials-file: 从 Dashboard 下载的 tunnel credentials JSON
+# ingress: 域名路由规则，精确匹配优先
+#
+# 注意：有了 config.yml 后，启动命令简化为：
+#   cloudflared tunnel run
+# 不需要再传 --token 和 --credentials-file 参数（都已在 config.yml 里）
+#
+tunnel: <TUNNEL-UUID>
+credentials-file: /home/v-zhengyu002/.cloudflared/<TUNNEL-UUID>.json
+
+ingress:
+  # 正式域名路由
+  - hostname: myapp.zhengyy.com
+    service: http://localhost:8080
+  # 兜底规则：未匹配的请求
+  - service: http_status:404

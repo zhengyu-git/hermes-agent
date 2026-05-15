@@ -104,7 +104,7 @@ Trace files on Windows: `C:\Users\<username>\Desktop\Trace\`
 Launch: `"<UnrealInsights.exe path>" "<trace file path>"`
 Example:
 ```bash
-"/mnt/d/Program Files/Epic Games/UE_5.4/Engine/Binaries/Win64/UnrealInsights.exe" "/mnt/c/Users/xxx/Desktop/Trace/20260413_170922.utrace"
+"/mnt/d/Program Files/Epic Games/UE_5.7/Engine/Binaries/Win64/UnrealInsights.exe" "/mnt/c/Users/xxx/Desktop/Trace/20260413_170922.utrace"
 ```
 - Use `background=true` to launch
 - Verify with `ps aux | grep -i UnrealInsights`
