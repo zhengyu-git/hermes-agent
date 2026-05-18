@@ -58,6 +58,7 @@ cronjob(action='run', job_id='<job_id>')
 
 | 现象 | 原因 |
 |------|------|
-| last_status=ok 但没收到推送 | 任务实际执行失败了，检查 output 文件 |
+| last_status=ok 但没收到推送，且 output 文件没有更新 | 任务实际执行失败，检查 output 文件 |
 | HTTP 404 | 模型端点不可用 |
 | 三个任务同时失败 | 大概率是 provider 侧问题，不是任务配置问题 |
+| output 文件时间戳不更新（cron run 后仍无新文件） | `execute_code` 在 cron 流式环境里网络请求卡死，导致整轮静默消失。改用 `terminal` 执行 Python 脚本。详见 `news-push-cron-debug` 技能。 |

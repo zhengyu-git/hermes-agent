@@ -135,6 +135,9 @@ with open("/tmp/baidu_news.html") as f:
 
 从以上来源手工筛选出国内8-12条、国际6-10条，输出纯文本摘要。
 
+**财经早报专用方法（与每日新闻推送不同的专项任务）**：
+见 `references/market-data-finance-briefing.md` — 包含 Yahoo Finance `chartPreviousClose` 字段、WSJ RSS 备用源、以及 execute_code 沙盒限制的处理流程。
+
 **实际执行顺序建议（Cron模式最稳）**：
 - 国内来源（步骤1、3、5带回结果）→ 去重筛选出8-12条
 - 国际来源（步骤2、4带回结果）→ 去重筛选出6-10条

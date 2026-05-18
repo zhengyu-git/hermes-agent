@@ -19,9 +19,9 @@ summary: 步骤具体帮助、常见坑点和验证误误等。
    ```bash
    cat > ~/cloudflared-run.sh <<'EOS'
    #!/usr/bin/env bash
+   # tunnel --token 方式不需要 tunnel 名称参数，也不需要 --url（已在 config.yml 里配了）
    /home/v-zhengyu002/.local/bin/cloudflared tunnel run \
-       --token "$(cat /home/v-zhengyu002/.cloudflared/tunnel.token)" myapp \
-       --url http://localhost:8080
+       --token "$(cat /home/v-zhengyu002/.cloudflared/tunnel.token)"
    EOS
    chmod +x ~/cloudflared-run.sh
    ```
@@ -33,9 +33,11 @@ summary: 步骤具体帮助、常见坑点和验证误误等。
    Wants=network-online.target
 
    [Service]
-   # 请在 <YOUR_FULL_TOKEN> 处替换为完整 token，或者使用上面写的 cloudflared-run.sh
-   ExecStart=/home/v-zhengyu002/.local/bin/cloudflared tunnel run --token <YOUR_FULL_TOKEN> myapp --url http://localhost:8080
-   # ExecStart=/home/v-zhengyu002/cloudflared-run.sh   # 如有脚本可用
+   # 用 token-file 方式避免 shell 参数里有敏感信息
+   ExecStart=/home/v-zhengyu002/.local/bin/cloudflared tunnel run \
+       --token-file /home/v-zhengyu002/.cloudflared/tunnel.token
+   # 或者用脚本：
+   # ExecStart=/home/v-zhengyu002/cloudflared-run.sh
    Restart=on-failure
    RestartSec=5
    StartLimitInterval=0
@@ -64,9 +66,21 @@ summary: 步骤具体帮助、常见坑点和验证误误等。
   - 常见原因是 token 写入错误，或本地端口不可达。可使用 `journalctl --user -u cloudflared.service` 查看详细日志。
 
 # 验证步骤
-1. `systemctl --user status cloudflared.service` 如果显示 `Active: active (running)` 则则成功。
-2. 浏览 `https://myapp.zhengyy.com/` 应返回您的本地页面。
-3. 重启 WSL 后，重新 `systemctl --user status cloudflared.service` 进行检查。
+1. `systemctl --user status cloudflared.service` 如果显示 `Active: active (running)` 则成功。
+2. **核心验证** — 看 tunnel 日志确认实际建立了连接：
+   ```bash
+   journalctl --user -u cloudflared.service -f &
+   # 或直接看 cloudflared 进程日志
+   # 找到 "Registered tunnel connection" = tunnel 真正在跑
+   # 如果只有 "Requesting new quick Tunnel" = 没连上
+   ```
+3. **外网访问测试**：
+   ```bash
+   curl -s --connect-timeout 10 https://myapp.zhengyy.com/ -L | head -5
+   # 返回 HTML = 成功
+   # 返回 502 = credentials 文件缺失或路由未配（参考 cloudflare-tunnel-wsl 技能）
+   ```
+4. 重启 WSL 后，重新 `systemctl --user status cloudflared.service` 进行检查。
 
 # 参考文件
 - `references/token_handling.md` – 如何安全查看完整 token，避免省略。

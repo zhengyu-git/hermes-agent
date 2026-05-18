@@ -113,8 +113,8 @@ TOKEN=$(cat "$TOKEN_FILE")
 **正确**：`cloudflared tunnel --log-level info run`（`--log-level` 在 `run` 之前），不是 `cloudflared tunnel run --log-level info`。
 
 #### Named tunnel 502 — 光有 token 不够，还需要 credentials 文件
-**表现**：`cloudflared tunnel run --token '<token>'` 进程在跑，日志里有 `Registered tunnel connection`，但访问域名返回 502。
-**根因**：Named tunnel（用 `cloudflared tunnel create` 创建的那种）除了需要 token，还需要 **credentials 文件**（`~/.cloudflared/` 下的 uuid.json），这是 `cloudflared tunnel create` 时自动生成的。token 负责识别"哪个 tunnel"，credentials 文件负责加密握手。如果 credentials 文件不存在或路径不对，Cloudflare edge 能看到 tunnel 连上来了，但无法建立安全连接，返回 502。
+**表现**：`cloudflared tunnel run --token '<token>'` 进程在跑，日志里有 `Registered tunnel connection connIndex=0`，但访问域名返回 502。
+**根因**：Named tunnel（用 `cloudflared tunnel create` 创建的那种）除了需要 token，还需要 **credentials 文件**（`~/.cloudflared/<uuid>.json`），这是 `cloudflared tunnel create` 时自动生成的。token 负责识别"哪个 tunnel"，credentials 文件负责加密握手。如果 credentials 文件不存在或路径不对，Cloudflare edge 能看到 tunnel 连上来了，但无法建立安全连接，返回 502。
 **排查**：
 ```bash
 ls ~/.cloudflared/
@@ -122,12 +122,23 @@ ls ~/.cloudflared/
 # 如果只有 tunnel.token，说明缺少 credentials 文件
 ```
 **解决**：
-1. 去 Cloudflare Dashboard → Networks → Tunnels → 点击对应 tunnel → `Edit tunnel`
-2. 底部有 `Download credentials file` 按钮，下载得到 json 文件
-3. 放到 `~/.cloudflared/<uuid>.json`（uuid 是 tunnel 的 ID，如 `83172e60-ae0a-410f-903f-243d29be1781.json`）
-4. 重启 cloudflared 进程即可
+1. 去 Cloudflare Dashboard → Networks → Tunnels → 点击对应 tunnel 名称（不是 Actions）→ 进入详情页
+2. 往下滚，底部有 `Download credentials file` 按钮，下载得到 json 文件
+3. 放到 `~/.cloudflared/<uuid>.json`（uuid 是 tunnel ID，如 `83172e60-ae0a-410f-903f-243d29be1781.json`）
+4. 重启 cloudflared 进程即可（不需要重新跑 `tunnel create`，credentials 文件是 tunnel 自带的）
 
-也可以在 config.yml 里指定 credentials 文件路径（见下方 templates）。
+也可以在 `config.yml` 里指定 credentials 文件路径（参考 `templates/cloudflared-config.yml`）。
+
+#### Tunnel 状态显示 "Down" 但实际能访问
+**表现**：Dashboard 里 tunnel 卡片显示红色 "Down"，但 `myapp.zhengyy.com` 实际能正常访问。
+**原因**：Cloudflare Dashboard 的 "Down" 状态检测的是**最后一条连接**的时间戳，如果 tunnel 长期不断开（QUIC 长连接），Dashboard 的健康检查会误判为离线（实际上 tunnel 在跑，只是没有新建连接来刷新状态）。
+**判断方法**：
+```bash
+# 看 tunnel 日志里有没有 "Registered tunnel connection"
+cat ~/.hermes/myapp/tunnel.log | grep "Registered tunnel connection"
+# 有记录 = tunnel 实际在运行
+```
+**结论**：以实际访问为准，不要以 Dashboard 状态为准。
 
 #### cloudflared tunnel --url（快速隧道）和 tunnel run（命名隧道）的区别
 - `cloudflared tunnel --url http://localhost:8080`：快速隧道，**不需要** credentials/token，Cloudflare 随机分配 `.trycloudflare.com` 地址，适合测试，每次重启地址都变

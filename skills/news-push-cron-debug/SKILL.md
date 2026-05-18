@@ -32,6 +32,50 @@ Cron 输出目录：`/home/v-zhengyu002/.hermes/cron/output/d7786a07b9cf/`
 # 央视 r.encoding='utf-8' 配合正则 <a[^>]+href=[^>]+>([^<]{10,80})</a> 效果较好
 ```
 
+## 已知问题
+
+### execute_code 在 cron 环境里流式调用网络请求会静默卡死
+
+**现象**：`last_status: ok`（cron 系统标），但 `~/.hermes/cron/output/<job_id>/` 目录下没有新的输出文件，或文件是旧的。手动 `cronjob(action='run')` 触发后，过 2 分钟仍无输出。
+
+**原因**：`execute_code` 走流式输出（Server-Sent Events），cron 环境里如果网络请求耗时长（如多个新闻源串行抓取），流可能会在 tool-call 执行中间断，但 agent 循环没有重试，导致整轮任务静默消失。cron 系统只检查「模型 API 是否调用成功」，不检查业务逻辑是否有输出，所以 `last_status` 仍为 `ok`。
+
+**判断方法**：手动触发后等 2 分钟，再看 `ls -la ~/.hermes/cron/output/<job_id>/` — 文件时间戳没有更新就是这个问题。
+
+**解法（按稳定性从高到低）**：
+
+1. **最佳：no_agent + script（本次采用的方案）**
+   - 把完整逻辑写成 Python 脚本存到 `~/.hermes/scripts/news_push.py`
+   - cron job 配置 `no_agent: true`，`script: "news_push.py"`
+   - 脚本 stdout 直接作为消息发送，无需 LLM 介入
+   - 支持 `[SILENT]` 输出（脚本 print `[SILENT]` 则静默不发送）
+   - 脚本内完成：抓取 → 去重 → 生成报告 → 保存 output 文件 → print 报告
+   - 脚本路径必须是 `~/.hermes/scripts/<name>.py`（其他路径会被拒绝）
+
+2. **次选：prompt + terminal 工具（仍有 streaming 风险）**
+   - prompt 里写 `python3 /home/v-zhengyu002/.hermes/scripts/news_fetch.py`
+   - 但 terminal 工具调用本身也走流式，长网络请求仍可能 stall
+   - 不推荐用于网络请求密集型任务
+
+3. **已废弃：execute_code**
+   - execute_code 在 cron 环境里流式调用网络请求会静默卡死
+   - 原因：SSE stream 在 tool-call 执行中间断，agent 无重试，任务静默消失
+   - cron 只检查「模型 API 是否调用成功」，不检查业务逻辑是否有输出
+   - 所以 `last_status: ok` 并不代表任务真正完成了
+
+**调试方法**：
+```bash
+# 手动触发后等待，然后检查输出文件时间戳
+cronjob(action='run', job_id='d7786a07b9cf')
+sleep 120 && ls -la ~/.hermes/cron/output/d7786a07b9cf/ | sort -r | head -3
+# 文件时间戳没有更新 → streaming stall 问题
+```
+
+**no_agent 模式的限制**：
+- 没有 LLM，所以无法做复杂判断（去重、新闻筛选等）
+- 脚本必须是全自主逻辑，输出什么就发什么
+- 如果脚本需要联网+LLM 判断两个步骤，考虑拆成两个 cron：第一个 no_agent 脚本抓数据，第二个用 LLM 整理（用 `context_from` 关联）
+
 ## 验证步骤
 1. 国内新闻 ≥ 10 条，每条 ≥ 20 字
 2. 国际新闻 ≥ 10 条，每条 ≥ 20 字
