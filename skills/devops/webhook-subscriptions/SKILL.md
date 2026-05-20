@@ -127,7 +127,7 @@ hermes webhook subscribe github-prs \
   --events "pull_request" \
   --prompt "PR #{pull_request.number} {action}: {pull_request.title}\nBy: {pull_request.user.login}\nBranch: {pull_request.head.ref}\n\n{pull_request.body}" \
   --skills "github-code-review" \
-  --deliver github_comment
+  --deliver REDACTED
 ```
 
 ### Stripe: payment events
@@ -176,7 +176,7 @@ hermes webhook subscribe antenna-matches \
 
 The POST returns `200 OK` on successful delivery, `502` on target failure — so upstream services can retry intelligently. HMAC auth, rate limits, and idempotency still apply.
 
-Requires `--deliver` to be a real target (telegram, discord, slack, github_comment, etc.) — `--deliver log` is rejected because log-only direct delivery is pointless.
+Requires `--deliver` to be a real target (telegram, discord, slack, REDACTED, etc.) — `--deliver log` is rejected because log-only direct delivery is pointless.
 
 ## Security
 

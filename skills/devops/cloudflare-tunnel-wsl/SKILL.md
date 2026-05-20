@@ -122,12 +122,15 @@ ls ~/.cloudflared/
 # 如果只有 tunnel.token，说明缺少 credentials 文件
 ```
 **解决**：
-1. 去 Cloudflare Dashboard → Networks → Tunnels → 点击对应 tunnel 名称（不是 Actions）→ 进入详情页
-2. 往下滚，底部有 `Download credentials file` 按钮，下载得到 json 文件
-3. 放到 `~/.cloudflared/<uuid>.json`（uuid 是 tunnel ID，如 `83172e60-ae0a-410f-903f-243d29be1781.json`）
-4. 重启 cloudflared 进程即可（不需要重新跑 `tunnel create`，credentials 文件是 tunnel 自带的）
+1. **方案 A（推荐）**：去 Cloudflare Dashboard → Networks → Tunnels → 点击 tunnel 名称（不是 Actions 按钮）→ 详情页 → 底部有 `Download credentials file` → 下载 json 文件 → 放到 `~/.cloudflared/<uuid>.json`
+2. **方案 B（更干净）**：删掉旧 tunnel，在 Dashboard 重新 Create a tunnel → 选 Cloudflared → 命名（如 myapp2）→ Download credentials file → 新 token 存到 `~/.cloudflared/tunnel.token` → credentials json 存到 `~/.cloudflared/<new-uuid>.json`
+   - 然后更新 DNS CNAME 记录指向新 tunnel ID
+   - 更新 systemd 服务里的 token
+3. 重启 cloudflared 进程即可
 
-也可以在 `config.yml` 里指定 credentials 文件路径（参考 `templates/cloudflared-config.yml`）。
+**注意**：Dashboard UI 可能不显示 Download credentials 按钮（取决于 Cloudflare 版本）。如果方案 A 找不到按钮，走方案 B 重建 tunnel。
+
+**临时方案**：用 `cloudflared tunnel --url http://localhost:8080`（快速隧道）绕过 named tunnel 的 credentials 要求。快速隧道不需要任何凭证，每次重启地址会变，但能用。
 
 #### Tunnel 状态显示 "Down" 但实际能访问
 **表现**：Dashboard 里 tunnel 卡片显示红色 "Down"，但 `myapp.zhengyy.com` 实际能正常访问。

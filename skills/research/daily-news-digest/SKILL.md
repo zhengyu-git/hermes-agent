@@ -11,6 +11,36 @@ triggers:
 
 # Daily News Digest (每日实时新闻推送)
 
+## ⚠️ 稳定部署方式（重要）
+
+**当前生产环境使用 `no_agent: true` 模式**，彻底绕过 LLM 流式机制的网络不稳定问题：
+
+```
+cron job ID: d7786a07b9cf
+script: news_push.py
+schedule: 0 12,17,22 * * *
+mode: no_agent (standalone Python script)
+script path: ~/.hermes/scripts/news_push.py
+```
+
+**为什么不用 LLM agent**：`execute_code` 在 cron 流式环境下执行网络请求时容易超时/卡住，导致 "Stream stalled mid tool-call" 错误。用 `no_agent: true` + 独立 Python 脚本，stdout 直接作为消息发送，稳定可靠。
+
+**news_push.py 脚本工作流程**：
+1. 用 `requests` 直接抓取多个新闻站原始 HTML
+2. 用正则提取标题并过滤导航词
+3. 读取今天已推送文件做去重
+4. 生成报告并保存到 `~/.hermes/cron/output/d7786a07b9cf/`
+5. stdout 输出报告文本（作为消息内容发送）
+
+**手动触发测试**：
+```bash
+python3 ~/.hermes/scripts/news_push.py
+```
+
+---
+
+## 以下为 LLM agent 手动执行时的参考方法（cron no_agent 模式不需要）
+
 从东方财富/财联社/新浪国际抓取**当天**最新新闻，分为国内和国际两部分输出。
 
 ## 数据源优先级

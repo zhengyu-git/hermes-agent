@@ -125,7 +125,7 @@ Hyphens and dots in names are replaced with underscores for LLM API compatibilit
 
 Examples:
 - Server `filesystem`, tool `read_file` → `mcp_filesystem_read_file`
-- Server `github`, tool `list-issues` → `mcp_github_list_issues`
+- Server `github`, tool `list-issues` → `mcp_REDACTED`
 - Server `my-api`, tool `fetch.data` → `mcp_my_api_fetch_data`
 
 ### Auto-Injection
@@ -280,7 +280,7 @@ mcp_servers:
     timeout: 60
 ```
 
-Registers tools like `mcp_github_list_issues`, `mcp_github_create_pull_request`, etc.
+Registers tools like `mcp_REDACTED`, `mcp_REDACTED`, etc.
 
 ### Remote HTTP Server
 
