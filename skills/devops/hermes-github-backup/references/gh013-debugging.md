@@ -71,7 +71,7 @@ These must be replaced with `REDACTED` in any file before committing:
 | Pattern | Type |
 |---------|------|
 | `ghp_[a-zA-Z0-9]{36}` | GitHub Classic PAT |
-| `REDACTED[a-zA-Z0-9_-]{50,}` | GitHub Fine-grained PAT |
+| `github_pat_[a-zA-Z0-9_-]{50,}` | GitHub Fine-grained PAT |
 | `gsk_[a-zA-Z0-9]{20,}` | Groq API Key |
 | `sk-[a-zA-Z0-9]{20,}` | OpenAI API Key |
 | `sk-ant-[a-zA-Z0-9_-]{20,}` | Anthropic API Key |
@@ -106,7 +106,7 @@ def sanitize(obj):
     if isinstance(obj, str):
         # Replace known token patterns
         obj = re.sub(r'ghp_[A-Za-z0-9]{36}', 'REDACTED', obj)
-        obj = re.sub(r'REDACTED[A-Za-z0-9_-]{50,}', 'REDACTED', obj)
+        obj = re.sub(r'github_pat_[A-Za-z0-9_-]{50,}', 'REDACTED', obj)
         return obj
     elif isinstance(obj, dict):
         return {k: sanitize(v) for k, v in obj.items()}
