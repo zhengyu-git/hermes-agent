@@ -156,7 +156,7 @@
     {
       "id": "e7d0c9fecd2a",
       "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
-      "prompt": "export GIT_TOKEN=REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
+      "prompt": "export GIT_TOKEN=ghp_REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
       "skills": [
         "hermes-github-backup"
       ],

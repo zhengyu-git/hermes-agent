@@ -25,7 +25,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T12:20:32.718048+08:00",
-      "next_run_at": "2026-05-23T09:00:00+08:00",
+      "next_run_at": "2026-05-26T09:00:00+08:00",
       "last_run_at": "2026-05-22T09:01:51.849263+08:00",
       "last_status": "ok",
       "last_error": null,
@@ -56,15 +56,15 @@
       "schedule_display": "0 2 * * *",
       "repeat": {
         "times": null,
-        "completed": 30
+        "completed": 31
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T20:30:11.734316+08:00",
-      "next_run_at": "2026-05-24T02:00:00+08:00",
-      "last_run_at": "2026-05-23T02:01:53.679157+08:00",
+      "next_run_at": "2026-05-27T02:00:00+08:00",
+      "last_run_at": "2026-05-26T02:11:52.465833+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -94,15 +94,15 @@
       "schedule_display": "0 0 * * *",
       "repeat": {
         "times": null,
-        "completed": 24
+        "completed": 25
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-28T15:51:11.129981+08:00",
-      "next_run_at": "2026-05-24T00:00:00+08:00",
-      "last_run_at": "2026-05-23T00:00:53.660220+08:00",
+      "next_run_at": "2026-05-27T00:00:00+08:00",
+      "last_run_at": "2026-05-26T00:03:32.499650+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -132,15 +132,15 @@
       "schedule_display": "0 12,17,22 * * *",
       "repeat": {
         "times": null,
-        "completed": 72
+        "completed": 74
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-29T17:14:41.560581+08:00",
-      "next_run_at": "2026-05-23T12:00:00+08:00",
-      "last_run_at": "2026-05-22T22:01:00.719471+08:00",
+      "next_run_at": "2026-05-26T12:00:00+08:00",
+      "last_run_at": "2026-05-25T22:00:52.904069+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -156,7 +156,7 @@
     {
       "id": "e7d0c9fecd2a",
       "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
-      "prompt": "export GIT_TOKEN=REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
+      "prompt": "export GIT_TOKEN=ghp_REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
       "skills": [
         "hermes-github-backup"
       ],
@@ -173,15 +173,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 10
+        "completed": 11
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-13T09:36:32.105049+08:00",
-      "next_run_at": "2026-05-24T03:00:00+08:00",
-      "last_run_at": "2026-05-22T03:02:40.676278+08:00",
+      "next_run_at": "2026-05-27T03:00:00+08:00",
+      "last_run_at": "2026-05-23T03:01:52.213739+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -194,5 +194,5 @@
       }
     }
   ],
-  "updated_at": "2026-05-23T03:00:53.847911+08:00"
+  "updated_at": "2026-05-26T03:00:52.583086+08:00"
 }
