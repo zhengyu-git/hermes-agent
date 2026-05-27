@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/home/v-zhengyu002/.hermes/logs/curator/20260520-022102",
-  "last_run_at": "2026-05-20T02:21:02.745273+00:00",
-  "last_run_duration_seconds": 80.278585,
-  "last_run_summary": "auto: no changes; llm: ## Assessment Summary\n\n**Candidate landscape**: 107 skills total in the library. Exactly **1 agent-created skill** (`cloudflare-tunnel-autostart`). All other 106 skills are bundled/hub-installed and off-limits per Hard Rule #1.\n\n**`cloudfla…",
+  "last_report_path": "/home/v-zhengyu002/.hermes/logs/curator/20260527-073246",
+  "last_run_at": "2026-05-27T07:32:46.803779+00:00",
+  "last_run_duration_seconds": 78.729697,
+  "last_run_summary": "auto: no changes; llm: I can see the full landscape now. There are 107 skills total, but the curator instructions say: **\"The candidate list below is already filtered to agent-created skills only.\"** — and the candidate list given was exactly 1 skill: `cloudflare…",
   "last_run_summary_shown_at": "2026-05-13T01:34:53.467019+00:00",
   "paused": false,
-  "run_count": 1
+  "run_count": 2
 }

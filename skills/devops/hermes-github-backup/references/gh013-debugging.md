@@ -55,7 +55,7 @@ Cron jobs run in a fresh environment with no access to the user's shell `.env` f
 
 **Correct approach:** Embed `export GIT_TOKEN=...` in the cron job prompt itself:
 ```
-export GIT_TOKEN=ghp_REDACTED
+export GIT_TOKEN=REDACTED
 
 使用 hermes-github-backup 技能...
 ```

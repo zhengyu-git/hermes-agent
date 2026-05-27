@@ -2,7 +2,7 @@ model:
   default: deepseek-ai/deepseek-v4-pro
   provider: nvidia
   base_url: https://integrate.api.nvidia.com/v1
-  api_key: gsk_REDACTED
+  api_key: REDACTED
 providers: {}
 fallback_providers:
 - provider: nvidia
@@ -502,11 +502,11 @@ platform_toolsets:
 custom_providers:
 - name: Api-xai.ainaibahub-claude-sonnet-4.6
   base_url: https://api-xai.ainaibahub.com/v1
-  api_key: sk-REDACTED
+  api_key: REDACTED
   model: claude-sonnet-4-6
 - name: openai/gpt-oss-120b
   base_url: https://api.groq.com/openai/v1
-  api_key: gsk_REDACTED
+  api_key: REDACTED
   model: openai/gpt-oss-120b
 QQBOT_HOME_CHANNEL: 42E7A93D2B848DB7776DB63BAE50FE2E
 
