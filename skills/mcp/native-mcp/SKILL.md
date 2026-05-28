@@ -276,7 +276,7 @@ mcp_servers:
     command: "npx"
     args: ["-y", "@modelcontextprotocol/server-github"]
     env:
-      GITHUB_PERSONAL_ACCESS_TOKEN: "REDACTED"
+      GITHUB_PERSONAL_ACCESS_TOKEN: "ghp_xxxxxxxxxxxxxxxxxxxx"
     timeout: 60
 ```
 
@@ -311,7 +311,7 @@ mcp_servers:
     command: "npx"
     args: ["-y", "@modelcontextprotocol/server-github"]
     env:
-      GITHUB_PERSONAL_ACCESS_TOKEN: "REDACTED"
+      GITHUB_PERSONAL_ACCESS_TOKEN: "ghp_xxxxxxxxxxxxxxxxxxxx"
 
   company_api:
     url: "https://mcp.internal.company.com/mcp"
