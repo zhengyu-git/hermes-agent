@@ -24,12 +24,7 @@ PDF目录已清空，不存放任何本地PDF文本。
 §
 用户是游戏性能工程师，工作于无限暖暖(Infinity Nikki)，使用 UE5、Mac M2、PerfInsight、Unreal Insights 等工具。用户喜欢自然随和的中文，像正常人聊天，可以适当调皮，会开玩笑（比如"智能裤"）。喜欢简洁，不废话。用户希望AI能自主解决问题、联网搜索新方法、自主学习创新；遇到问题时希望我先自己尝试解决，而不是直接说"不行"。vision_analyze 工具不支持本地路径（/mnt/c 或 Windows 路径），只接受 HTTP URL 或特定格式的本地路径。平时多学习自然的中文表达，提升处理事情的能力。
 §
-用户已将hermes备份从Gitee迁移到GitHub：仓库 https://github.com/zhengyu-git/hermes-agent，GitHub PAT已嵌入cron任务。Gitee仓库废弃（WSL下不通）。
-
-【PerfInsight网站文档导航】已整理到 ~/.hermes/perfsight_websites/README.md：
-- 中文文档站：perfsight.qq.com/documents/zh/perfsight/（含Unity/Unreal/控制台/主机/云控/OpenApi/合规）
-- OpenAPI文档站：perfsight.qq.com/openapi-docs/zh/（WSL下不稳定，Windows可访问）
-- 本地已缓存 perfinsight_docs 和 perfinsight_openapi_docs
+用户已将hermes备份从Gitee迁移到GitHub。GitHub用户名 zhengyu-git。Fine-grained token (github_pat_11BH...) 可用。Gitee仓库废弃（WSL下不通）。
 §
 处理 Windows 电脑的任何东西（文件、系统设置、软件配置、注册表、环境变量等）都必须先询问用户，经过同意才能执行，不能自作主张。
 §
@@ -74,3 +69,5 @@ PerfInsight模版用"场景结束时间"标识对局，不用开始时间。deta
 用户域名 zhengyy.com（不是 zhengyu.com），在阿里云购买，DNS 已切到 Cloudflare（NS: bingo.ns.cloudflare.com, woz.ns.cloudflare.com）。Cloudflare Tunnel 已配置：隧道名 myapp，ID 83172e60-ae0a-410f-903f-243d29be1781，token 已获取。Public hostname: myapp.zhengyy.com → http://localhost:8080。cloudflared 安装在 ~/.local/bin/cloudflared（v2026.3.0），WSL 无 sudo 权限。测试页面在 /home/v-zhengyu002/test-site/index.html。叠纸内网 DNS 10.255.255.254，WSL 本地无法解析 Cloudflare 新增域名但公网可访问。
 §
 域名 zhengyy.com（不是 zhengyu.com），阿里云购买，DNS 托管在阿里云（hichina），已迁移到 Cloudflare（NS: bingo.ns.cloudflare.com / woz.ns.cloudflare.com）。Cloudflare 账号用谷歌登录。Cloudflare Tunnel token: eyJhIjoiNDYzNWI3ZWRmYWM0NWFlMGE4YTg1MDg3MmE5ZjVhZDMi...
+§
+GitHub Fine-grained token github_pat_11BH... 可用（可访问 hermes-agent），但不包含 desktop-backup 仓库权限。用户正在创建新的 token（仅限 desktop-backup 仓库，Contents=Read+Write）用于桌面备忘录备份 cron。

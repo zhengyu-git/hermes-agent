@@ -3,7 +3,7 @@
   "last_run_at": "2026-05-27T07:32:46.803779+00:00",
   "last_run_duration_seconds": 78.729697,
   "last_run_summary": "auto: no changes; llm: I can see the full landscape now. There are 107 skills total, but the curator instructions say: **\"The candidate list below is already filtered to agent-created skills only.\"** — and the candidate list given was exactly 1 skill: `cloudflare…",
-  "last_run_summary_shown_at": "2026-05-13T01:34:53.467019+00:00",
+  "last_run_summary_shown_at": "2026-05-27T07:32:46.803779+00:00",
   "paused": false,
   "run_count": 2
 }

@@ -2,8 +2,8 @@
   "jobs": [
     {
       "id": "0fcab8cbfa05",
-      "name": "每日财经早报",
-      "prompt": "每天早上9点为用户发送全球财经早报。全部内容必须使用中文，所有英文标题和新闻一律翻译成中文，不允许出现任何英文。\n\n数据获取步骤：\n1. 通过 Yahoo Finance API 获取标普500、纳斯达克、道琼斯、黄金、比特币、原油的实时期货/现货价格和涨跌\n2. 通过 Hacker News Algolia API (hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=8) 获取过去24小时科技热门\n3. 通过 Google News RSS (news.google.com/news/rss/search?q=site:reuters.com+finance) 获取过去24小时重要国际财经/地缘政治新闻\n4. 通过 dev.to API (dev.to/api/articles?tag=programming&per_page=5) 获取开发者社区热门\n\n输出格式（严格按此模板）：\n\n📅 全球财经早报 · {日期}\n\n---\n\n💰 财经市场\n| 品种 | 点位 | 涨跌 |\n|------|------|------|\n| 标普500 | xxx | ±x.xx% |\n| 纳斯达克 | xxx | ±x.xx% |\n| 道琼斯 | xxx | ±x.xx% |\n| 黄金 | $xxxx | ±x.xx% |\n| 比特币 | $xxxxx | ±x.xx% |\n| 原油 | $xx | ±x.xx% |\n\n---\n\n🤖 科技热门（Hacker News Top）\n| 热度 | 标题 |\n|------|------|\n| XXXXpts | 中文翻译后的标题 |\n\n---\n\n🌍 国际要闻（Reuters）\n- 中文翻译后的新闻标题1\n- 中文翻译后的新闻标题2\n- 中文翻译后的新闻标题3\n\n---\n\n🎯 一句话总结\n\n---\n【重要规则】所有新闻标题、描述、总结必须使用中文，严禁保留英文原文。",
+      "name": "\u6bcf\u65e5\u8d22\u7ecf\u65e9\u62a5",
+      "prompt": "\u6bcf\u5929\u65e9\u4e0a9\u70b9\u4e3a\u7528\u6237\u53d1\u9001\u5168\u7403\u8d22\u7ecf\u65e9\u62a5\u3002\u5168\u90e8\u5185\u5bb9\u5fc5\u987b\u4f7f\u7528\u4e2d\u6587\uff0c\u6240\u6709\u82f1\u6587\u6807\u9898\u548c\u65b0\u95fb\u4e00\u5f8b\u7ffb\u8bd1\u6210\u4e2d\u6587\uff0c\u4e0d\u5141\u8bb8\u51fa\u73b0\u4efb\u4f55\u82f1\u6587\u3002\n\n\u6570\u636e\u83b7\u53d6\u6b65\u9aa4\uff1a\n1. \u901a\u8fc7 Yahoo Finance API \u83b7\u53d6\u6807\u666e500\u3001\u7eb3\u65af\u8fbe\u514b\u3001\u9053\u743c\u65af\u3001\u9ec4\u91d1\u3001\u6bd4\u7279\u5e01\u3001\u539f\u6cb9\u7684\u5b9e\u65f6\u671f\u8d27/\u73b0\u8d27\u4ef7\u683c\u548c\u6da8\u8dcc\n2. \u901a\u8fc7 Hacker News Algolia API (hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=8) \u83b7\u53d6\u8fc7\u53bb24\u5c0f\u65f6\u79d1\u6280\u70ed\u95e8\n3. \u901a\u8fc7 Google News RSS (news.google.com/news/rss/search?q=site:reuters.com+finance) \u83b7\u53d6\u8fc7\u53bb24\u5c0f\u65f6\u91cd\u8981\u56fd\u9645\u8d22\u7ecf/\u5730\u7f18\u653f\u6cbb\u65b0\u95fb\n4. \u901a\u8fc7 dev.to API (dev.to/api/articles?tag=programming&per_page=5) \u83b7\u53d6\u5f00\u53d1\u8005\u793e\u533a\u70ed\u95e8\n\n\u8f93\u51fa\u683c\u5f0f\uff08\u4e25\u683c\u6309\u6b64\u6a21\u677f\uff09\uff1a\n\n\ud83d\udcc5 \u5168\u7403\u8d22\u7ecf\u65e9\u62a5 \u00b7 {\u65e5\u671f}\n\n---\n\n\ud83d\udcb0 \u8d22\u7ecf\u5e02\u573a\n| \u54c1\u79cd | \u70b9\u4f4d | \u6da8\u8dcc |\n|------|------|------|\n| \u6807\u666e500 | xxx | \u00b1x.xx% |\n| \u7eb3\u65af\u8fbe\u514b | xxx | \u00b1x.xx% |\n| \u9053\u743c\u65af | xxx | \u00b1x.xx% |\n| \u9ec4\u91d1 | $xxxx | \u00b1x.xx% |\n| \u6bd4\u7279\u5e01 | $xxxxx | \u00b1x.xx% |\n| \u539f\u6cb9 | $xx | \u00b1x.xx% |\n\n---\n\n\ud83e\udd16 \u79d1\u6280\u70ed\u95e8\uff08Hacker News Top\uff09\n| \u70ed\u5ea6 | \u6807\u9898 |\n|------|------|\n| XXXXpts | \u4e2d\u6587\u7ffb\u8bd1\u540e\u7684\u6807\u9898 |\n\n---\n\n\ud83c\udf0d \u56fd\u9645\u8981\u95fb\uff08Reuters\uff09\n- \u4e2d\u6587\u7ffb\u8bd1\u540e\u7684\u65b0\u95fb\u6807\u98981\n- \u4e2d\u6587\u7ffb\u8bd1\u540e\u7684\u65b0\u95fb\u6807\u98982\n- \u4e2d\u6587\u7ffb\u8bd1\u540e\u7684\u65b0\u95fb\u6807\u98983\n\n---\n\n\ud83c\udfaf \u4e00\u53e5\u8bdd\u603b\u7ed3\n\n---\n\u3010\u91cd\u8981\u89c4\u5219\u3011\u6240\u6709\u65b0\u95fb\u6807\u9898\u3001\u63cf\u8ff0\u3001\u603b\u7ed3\u5fc5\u987b\u4f7f\u7528\u4e2d\u6587\uff0c\u4e25\u7981\u4fdd\u7559\u82f1\u6587\u539f\u6587\u3002",
       "skills": [],
       "skill": null,
       "model": null,
@@ -18,15 +18,15 @@
       "schedule_display": "0 9 * * *",
       "repeat": {
         "times": null,
-        "completed": 32
+        "completed": 35
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T12:20:32.718048+08:00",
-      "next_run_at": "2026-05-29T09:00:00+08:00",
-      "last_run_at": "2026-05-28T09:05:59.884365+08:00",
+      "next_run_at": "2026-05-31T09:00:00+08:00",
+      "last_run_at": "2026-05-30T09:03:57.812353+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -40,8 +40,8 @@
     },
     {
       "id": "8ba8b8b24ef5",
-      "name": "每日自我整理维护",
-      "prompt": "自我整理和维护任务：\n\n1. 清理缓存文件：\n   - 删除 ~/.hermes/image_cache/ 中的旧图片（保留最近7天的）\n   - 删除 ~/.hermes/cache/screenshots/ 中的旧截图（保留最近7天的）\n\n2. 检查 ~/.hermes/skills/ 目录：\n   - 查看所有技能文档是否有需要更新的地方\n   - 检查是否有新学会的方法可以补充到技能文档\n\n3. 读取 memory 内容：\n   - 检查是否有过期、无效的记忆信息需要删除或更新\n\n4. 日志记录：\n   - 把本次整理的结果打印出来（删除了多少文件、整理了什么）\n\n只需要做这些简单的维护工作，不需要联网搜索。如果发现问题记录下来即可。",
+      "name": "\u6bcf\u65e5\u81ea\u6211\u6574\u7406\u7ef4\u62a4",
+      "prompt": "\u81ea\u6211\u6574\u7406\u548c\u7ef4\u62a4\u4efb\u52a1\uff1a\n\n1. \u6e05\u7406\u7f13\u5b58\u6587\u4ef6\uff1a\n   - \u5220\u9664 ~/.hermes/image_cache/ \u4e2d\u7684\u65e7\u56fe\u7247\uff08\u4fdd\u7559\u6700\u8fd17\u5929\u7684\uff09\n   - \u5220\u9664 ~/.hermes/cache/screenshots/ \u4e2d\u7684\u65e7\u622a\u56fe\uff08\u4fdd\u7559\u6700\u8fd17\u5929\u7684\uff09\n\n2. \u68c0\u67e5 ~/.hermes/skills/ \u76ee\u5f55\uff1a\n   - \u67e5\u770b\u6240\u6709\u6280\u80fd\u6587\u6863\u662f\u5426\u6709\u9700\u8981\u66f4\u65b0\u7684\u5730\u65b9\n   - \u68c0\u67e5\u662f\u5426\u6709\u65b0\u5b66\u4f1a\u7684\u65b9\u6cd5\u53ef\u4ee5\u8865\u5145\u5230\u6280\u80fd\u6587\u6863\n\n3. \u8bfb\u53d6 memory \u5185\u5bb9\uff1a\n   - \u68c0\u67e5\u662f\u5426\u6709\u8fc7\u671f\u3001\u65e0\u6548\u7684\u8bb0\u5fc6\u4fe1\u606f\u9700\u8981\u5220\u9664\u6216\u66f4\u65b0\n\n4. \u65e5\u5fd7\u8bb0\u5f55\uff1a\n   - \u628a\u672c\u6b21\u6574\u7406\u7684\u7ed3\u679c\u6253\u5370\u51fa\u6765\uff08\u5220\u9664\u4e86\u591a\u5c11\u6587\u4ef6\u3001\u6574\u7406\u4e86\u4ec0\u4e48\uff09\n\n\u53ea\u9700\u8981\u505a\u8fd9\u4e9b\u7b80\u5355\u7684\u7ef4\u62a4\u5de5\u4f5c\uff0c\u4e0d\u9700\u8981\u8054\u7f51\u641c\u7d22\u3002\u5982\u679c\u53d1\u73b0\u95ee\u9898\u8bb0\u5f55\u4e0b\u6765\u5373\u53ef\u3002",
       "skills": [],
       "skill": null,
       "model": null,
@@ -56,15 +56,15 @@
       "schedule_display": "0 2 * * *",
       "repeat": {
         "times": null,
-        "completed": 33
+        "completed": 35
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-23T20:30:11.734316+08:00",
-      "next_run_at": "2026-05-30T02:00:00+08:00",
-      "last_run_at": "2026-05-29T02:03:55.478844+08:00",
+      "next_run_at": "2026-06-01T02:00:00+08:00",
+      "last_run_at": "2026-05-31T02:01:38.135075+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -78,8 +78,8 @@
     },
     {
       "id": "b713e4143df7",
-      "name": "桌面备忘录备份",
-      "prompt": "每日自动备份桌面备忘录到 GitHub。\n\n**任务：**\n将 Windows 桌面的两个文件上传到 zhengyu-git/desktop-backup 仓库（默认分支 main），覆盖旧文件。\n\n**步骤：**\n1. 复制文件：\n   - /mnt/c/Users/v-zhengyu002/Desktop/备忘录.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/备忘录-随手记.txt\n2. 浅克隆仓库：git clone --depth=1 https://REDACTED@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. 将两个文件复制到克隆目录根下（不是子目录，直接放根目录覆盖旧文件）\n4. git add -A，有变更则 git commit + git push origin（默认分支 main）\n5. 清理临时目录\n6. 输出结果（成功/失败）\n\n**注意：**\n- Git remote 使用 https://REDACTED@github.com/zhengyu-git/desktop-backup.git\n- 默认分支是 main（不是 master）\n- 如果 git push 网络失败，不重试，记录失败即可\n- 使用 Python shutil 复制，不要用 tar（安全扫描会拦截）",
+      "name": "\u684c\u9762\u5907\u5fd8\u5f55\u5907\u4efd",
+      "prompt": "\u6bcf\u65e5\u81ea\u52a8\u5907\u4efd\u684c\u9762\u5907\u5fd8\u5f55\u5230 GitHub\u3002\n\n**\u4efb\u52a1\uff1a**\n\u5c06 Windows \u684c\u9762\u7684\u4e24\u4e2a\u6587\u4ef6\u4e0a\u4f20\u5230 zhengyu-git/desktop-backup \u4ed3\u5e93\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\uff0c\u8986\u76d6\u65e7\u6587\u4ef6\u3002\n\n**\u6b65\u9aa4\uff1a**\n1. \u590d\u5236\u6587\u4ef6\uff1a\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55.txt\n   - /mnt/c/Users/v-zhengyu002/Desktop/\u5907\u5fd8\u5f55-\u968f\u624b\u8bb0.txt\n2. \u6d45\u514b\u9686\u4ed3\u5e93\uff1agit clone --depth=1 https://REDACTED@github.com/zhengyu-git/desktop-backup.git /tmp/desktop-backup-cron\n3. \u5c06\u4e24\u4e2a\u6587\u4ef6\u590d\u5236\u5230\u514b\u9686\u76ee\u5f55\u6839\u4e0b\uff08\u4e0d\u662f\u5b50\u76ee\u5f55\uff0c\u76f4\u63a5\u653e\u6839\u76ee\u5f55\u8986\u76d6\u65e7\u6587\u4ef6\uff09\n4. git add -A\uff0c\u6709\u53d8\u66f4\u5219 git commit + git push origin\uff08\u9ed8\u8ba4\u5206\u652f main\uff09\n5. \u6e05\u7406\u4e34\u65f6\u76ee\u5f55\n6. \u8f93\u51fa\u7ed3\u679c\uff08\u6210\u529f/\u5931\u8d25\uff09\n\n**\u6ce8\u610f\uff1a**\n- Git remote \u4f7f\u7528 https://REDACTED@github.com/zhengyu-git/desktop-backup.git\n- \u9ed8\u8ba4\u5206\u652f\u662f main\uff08\u4e0d\u662f master\uff09\n- \u5982\u679c git push \u7f51\u7edc\u5931\u8d25\uff0c\u4e0d\u91cd\u8bd5\uff0c\u8bb0\u5f55\u5931\u8d25\u5373\u53ef\n- \u4f7f\u7528 Python shutil \u590d\u5236\uff0c\u4e0d\u8981\u7528 tar\uff08\u5b89\u5168\u626b\u63cf\u4f1a\u62e6\u622a\uff09",
       "skills": [],
       "skill": null,
       "model": null,
@@ -94,15 +94,15 @@
       "schedule_display": "0 0 * * *",
       "repeat": {
         "times": null,
-        "completed": 27
+        "completed": 29
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-28T15:51:11.129981+08:00",
-      "next_run_at": "2026-05-30T00:00:00+08:00",
-      "last_run_at": "2026-05-29T00:03:04.986557+08:00",
+      "next_run_at": "2026-06-01T00:00:00+08:00",
+      "last_run_at": "2026-05-31T00:00:32.801826+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -116,8 +116,8 @@
     },
     {
       "id": "d7786a07b9cf",
-      "name": "每日实时新闻推送（午/晚/夜）",
-      "prompt": "搜索并整理今天（当天）最新发生的国内外重大新闻。\n\n## 第一步：用 terminal 执行数据抓取脚本\n```bash\npython3 /home/v-zhengyu002/.hermes/scripts/news_crawl.py\n```\n这会把当天新闻标题抓取到 ~/.hermes/scripts/news_crawl_*.json 并更新 news_state.json\n\n## 第二步：读取状态文件\n读取 /home/v-zhengyu002/.hermes/scripts/news_state.json 获取：\n- 当前时段（午间/晚间/夜间）\n- 抓取到的新闻列表\n- 今天已推送的标题（用于去重）\n\n## 第三步：读取今天已推送的文件去重\n检查 /home/v-zhengyu002/.hermes/cron/output/d7786a07b9cf/ 目录下今天的 .md 文件，提取已有标题\n\n## 第四步：生成报告\n根据 news_state.json 中的 period 生成对应标题（午间速报/晚间速报/夜间速报）\n\n格式：\n📰 X月X日（周X）[午间/晚间/夜间]速报\n\n🇨🇳 中国国内\n- [国内新闻1]\n- [国内新闻2]\n...\n\n🌍 国际\n- [国际新闻1]\n- [国际新闻2]\n...\n\n规则：\n- 国内12-15条，国际12-15条，每条20字以上\n- 纯中文，全部内容放一条消息\n- **严格去重**：与今天已推送的标题不重复\n- 如果国内或国际不足10条，输出 `[SILENT]`\n\n验证：\n1. 是否有至少10条国内新闻（每条10字以上）\n2. 是否有至少10条国际新闻（每条10字以上）\n3. emoji 标签是否存在（🇨🇳 / 🌍）\n4. 标题时段词是否与当前时段匹配",
+      "name": "\u6bcf\u65e5\u5b9e\u65f6\u65b0\u95fb\u63a8\u9001\uff08\u5348/\u665a/\u591c\uff09",
+      "prompt": "\u641c\u7d22\u5e76\u6574\u7406\u4eca\u5929\uff08\u5f53\u5929\uff09\u6700\u65b0\u53d1\u751f\u7684\u56fd\u5185\u5916\u91cd\u5927\u65b0\u95fb\u3002\n\n## \u7b2c\u4e00\u6b65\uff1a\u7528 terminal \u6267\u884c\u6570\u636e\u6293\u53d6\u811a\u672c\n```bash\npython3 /home/v-zhengyu002/.hermes/scripts/news_crawl.py\n```\n\u8fd9\u4f1a\u628a\u5f53\u5929\u65b0\u95fb\u6807\u9898\u6293\u53d6\u5230 ~/.hermes/scripts/news_crawl_*.json \u5e76\u66f4\u65b0 news_state.json\n\n## \u7b2c\u4e8c\u6b65\uff1a\u8bfb\u53d6\u72b6\u6001\u6587\u4ef6\n\u8bfb\u53d6 /home/v-zhengyu002/.hermes/scripts/news_state.json \u83b7\u53d6\uff1a\n- \u5f53\u524d\u65f6\u6bb5\uff08\u5348\u95f4/\u665a\u95f4/\u591c\u95f4\uff09\n- \u6293\u53d6\u5230\u7684\u65b0\u95fb\u5217\u8868\n- \u4eca\u5929\u5df2\u63a8\u9001\u7684\u6807\u9898\uff08\u7528\u4e8e\u53bb\u91cd\uff09\n\n## \u7b2c\u4e09\u6b65\uff1a\u8bfb\u53d6\u4eca\u5929\u5df2\u63a8\u9001\u7684\u6587\u4ef6\u53bb\u91cd\n\u68c0\u67e5 /home/v-zhengyu002/.hermes/cron/output/d7786a07b9cf/ \u76ee\u5f55\u4e0b\u4eca\u5929\u7684 .md \u6587\u4ef6\uff0c\u63d0\u53d6\u5df2\u6709\u6807\u9898\n\n## \u7b2c\u56db\u6b65\uff1a\u751f\u6210\u62a5\u544a\n\u6839\u636e news_state.json \u4e2d\u7684 period \u751f\u6210\u5bf9\u5e94\u6807\u9898\uff08\u5348\u95f4\u901f\u62a5/\u665a\u95f4\u901f\u62a5/\u591c\u95f4\u901f\u62a5\uff09\n\n\u683c\u5f0f\uff1a\n\ud83d\udcf0 X\u6708X\u65e5\uff08\u5468X\uff09[\u5348\u95f4/\u665a\u95f4/\u591c\u95f4]\u901f\u62a5\n\n\ud83c\udde8\ud83c\uddf3 \u4e2d\u56fd\u56fd\u5185\n- [\u56fd\u5185\u65b0\u95fb1]\n- [\u56fd\u5185\u65b0\u95fb2]\n...\n\n\ud83c\udf0d \u56fd\u9645\n- [\u56fd\u9645\u65b0\u95fb1]\n- [\u56fd\u9645\u65b0\u95fb2]\n...\n\n\u89c4\u5219\uff1a\n- \u56fd\u518512-15\u6761\uff0c\u56fd\u964512-15\u6761\uff0c\u6bcf\u676120\u5b57\u4ee5\u4e0a\n- \u7eaf\u4e2d\u6587\uff0c\u5168\u90e8\u5185\u5bb9\u653e\u4e00\u6761\u6d88\u606f\n- **\u4e25\u683c\u53bb\u91cd**\uff1a\u4e0e\u4eca\u5929\u5df2\u63a8\u9001\u7684\u6807\u9898\u4e0d\u91cd\u590d\n- \u5982\u679c\u56fd\u5185\u6216\u56fd\u9645\u4e0d\u8db310\u6761\uff0c\u8f93\u51fa `[SILENT]`\n\n\u9a8c\u8bc1\uff1a\n1. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u5185\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n2. \u662f\u5426\u6709\u81f3\u5c1110\u6761\u56fd\u9645\u65b0\u95fb\uff08\u6bcf\u676110\u5b57\u4ee5\u4e0a\uff09\n3. emoji \u6807\u7b7e\u662f\u5426\u5b58\u5728\uff08\ud83c\udde8\ud83c\uddf3 / \ud83c\udf0d\uff09\n4. \u6807\u9898\u65f6\u6bb5\u8bcd\u662f\u5426\u4e0e\u5f53\u524d\u65f6\u6bb5\u5339\u914d",
       "skills": [],
       "skill": null,
       "model": null,
@@ -132,15 +132,15 @@
       "schedule_display": "0 12,17,22 * * *",
       "repeat": {
         "times": null,
-        "completed": 79
+        "completed": 85
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-04-29T17:14:41.560581+08:00",
-      "next_run_at": "2026-05-29T12:00:00+08:00",
-      "last_run_at": "2026-05-28T22:00:11.427230+08:00",
+      "next_run_at": "2026-05-31T12:00:00+08:00",
+      "last_run_at": "2026-05-30T22:00:07.379217+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -155,8 +155,8 @@
     },
     {
       "id": "e7d0c9fecd2a",
-      "name": "每日GitHub备份",
-      "prompt": "export GIT_TOKEN=REDACTED\n\n使用 hermes-github-backup 技能每日备份 Hermes 核心文件到 GitHub。",
+      "name": "\u6bcf\u65e5GitHub\u5907\u4efd",
+      "prompt": "export GIT_TOKEN=REDACTED\n\n\u4f7f\u7528 hermes-github-backup \u6280\u80fd\u6bcf\u65e5\u5907\u4efd Hermes \u6838\u5fc3\u6587\u4ef6\u5230 GitHub\u3002",
       "skills": [
         "hermes-github-backup"
       ],
@@ -173,15 +173,15 @@
       "schedule_display": "0 3 * * *",
       "repeat": {
         "times": null,
-        "completed": 13
+        "completed": 15
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-13T09:36:32.105049+08:00",
-      "next_run_at": "2026-05-30T03:00:00+08:00",
-      "last_run_at": "2026-05-28T03:04:28.109717+08:00",
+      "next_run_at": "2026-06-01T03:00:00+08:00",
+      "last_run_at": "2026-05-30T03:00:47.318210+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -194,5 +194,5 @@
       }
     }
   ],
-  "updated_at": "2026-05-29T03:00:55.989930+08:00"
+  "updated_at": "2026-05-31T03:00:38.409940+08:00"
 }
