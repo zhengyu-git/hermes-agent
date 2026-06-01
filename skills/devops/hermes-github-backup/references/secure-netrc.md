@@ -1,53 +1,43 @@
-# Secure temporary netrc handling for cron backups
+# Secure Netrc for Cron Backups
 
-When running the `hermes-github-backup` cron job, writing the GitHub token to the permanent `~/.netrc` file is insecure and can be caught by security scanners. Instead, create a temporary netrc file inside the clone work directory and point Git to use it only for the duration of the git operations.
+When the backup script runs under cron, environment variables are the only reliable way to pass the GitHub token. Persistent dotfiles like `~/.netrc` are risky because they store the token on disk and may be scanned.
 
-## Example script (bash)
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Expect GIT_TOKEN environment variable to be set in the cron prompt
-if [[ -z "${GIT_TOKEN:-}" ]]; then
-  echo "GIT_TOKEN not set – abort" >&2
-  exit 1
-fi
-
-# Create temporary workdir and temp netrc file
-WORKDIR=$(mktemp -d)
-NETRC_TEMP="$WORKDIR/.netrc"
-
-# Write credentials with proper permissions (600)
-cat > "$NETRC_TEMP" <<EOF
+## Temporary Netrc Approach
+1. Create a temporary working directory:
+   ```bash
+   WORKDIR=$(mktemp -d)
+   ```
+2. Set `HOME` to this directory so git reads the netrc from there:
+   ```bash
+   export HOME="$WORKDIR"
+   ```
+3. Write the netrc file inside the temporary directory:
+   ```bash
+   cat > "$WORKDIR/.netrc" <<EOF
 machine github.com
 login x-access-token
 password $GIT_TOKEN
 EOF
-chmod 600 "$NETRC_TEMP"
+   chmod 600 "$WORKDIR/.netrc"
+   ```
+4. Unset any existing credential helper to avoid conflicts:
+   ```bash
+   git config --unset credential.helper || true
+   ```
+5. Run git commands (clone, add, commit, push) within this environment. Example:
+   ```bash
+   GIT_TERMINAL_PROMPT=0 git clone --depth=1 https://github.com/zhengyu-git/hermes-agent.git "$WORKDIR/repo"
+   # ... sync files, commit ...
+   GIT_TERMINAL_PROMPT=0 git push origin master
+   ```
+6. Clean up the temporary directory after the push:
+   ```bash
+   rm -rf "$WORKDIR"
+   ```
 
-# Export HOME so that git reads the temporary netrc
-export HOME="$WORKDIR"
+## Why This Matters
+- **Security**: The token never touches the persistent filesystem, reducing risk of accidental exposure.
+- **Compliance**: Avoids triggering security scanners that flag PATs in dotfiles.
+- **Cron Compatibility**: Cron jobs have a minimal environment; this method works without relying on `.env` files.
 
-# Clone shallow repo using the temporary netrc for auth
-git -c credential.helper='store --file "$NETRC_TEMP"' clone --depth=1 https://github.com/zhengyu-git/hermes-agent.git "$WORKDIR"
-
-# ... perform rsync, redaction, commit, push as usual ...
-# (You can reuse the rest of the backup.sh script here)
-
-# Cleanup
-rm -rf "$WORKDIR"
-```
-
-## How it works
-1. **Temporary netrc** – The token is written to `$WORKDIR/.netrc` with mode `600`. This file is never persisted beyond the script run.
-2. **HOME redirection** – By setting `HOME` to the temporary work directory, git automatically picks up the netrc file without needing to modify global user config.
-3. **Credential helper** – The `store --file "$NETRC_TEMP"` config forces git to use only this netrc file, preventing it from falling back to any existing (possibly stale) credential stores.
-4. **Cleanup** – The script removes the entire work directory at the end, guaranteeing no token remains on disk.
-
-## Benefits
-- No permanent token file in the user's home directory.
-- Avoids security‑scanner redaction of tokens embedded in command lines.
-- Works reliably in cron where environment files like `.env` are not loaded.
-- Keeps the backup process compliant with GitHub Push Protection (GH013).
-
-Refer to this file from the main `hermes-github-backup` skill for the exact steps to incorporate.
+Use this script fragment in your backup implementation to ensure safe credential handling.
